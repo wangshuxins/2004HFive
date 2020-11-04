@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 //Route::get("/get/index","IndexIndexController@index");
-Route::get("/desc",function(){
-	echo "跨境电商";
+Route::get("/index","Index\IndexController@index");
+Route::get("/redis",function(){
+
+   phpinfo();
+
 });
