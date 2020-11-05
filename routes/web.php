@@ -15,10 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get("/get/index","IndexIndexController@index");
-Route::get("/index","Index\IndexController@index");
-Route::get("/redis",function(){
+Route::get("/hfive","Hfive\HfiveController@hfive");
 
-   phpinfo();
-
-});
