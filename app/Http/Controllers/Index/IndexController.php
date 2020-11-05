@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function index(){
 	   $key = "key"; 
-	   $set = Redis::set($key,"123");
+	   $set = Redis::set($key,"456");
 	   $get = Redis::get($key);
 	   dd($get);
 	   $get = DB::table("test")->get()->toArray();
