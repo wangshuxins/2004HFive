@@ -22,7 +22,11 @@ class HfiveController extends Controller
                 $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token ."&openid=".$openid."&lang=zh_CN";
                 $fens = json_decode($this->http_get($url), true);
               
+                    if (isset($fens["errcode"])) {//不为空，说明获取信息失败了
+                    $this->writeLog("获取用户信息失败");
+                } else {
                     $content = "您好!感谢您的关注";
+                }
                 
             } else {
                 echo "false";
