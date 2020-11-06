@@ -17,7 +17,7 @@ class HfiveController extends Controller
             if ($data[0] == "subscribe") {
                 $openid = $data->FromUserName;
                 $access_token = $this->assecc_token();
-                $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" . $access_token . "&openid=" . $openid . "&lang=zh_CN";
+                $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token ."&openid=".$openid."&lang=zh_CN";
                 $fens = json_decode($this->http_get($url), true);
                 if (isset($fens["errcode"])) {//不为空，说明获取信息失败了
                     $this->writeLog("获取用户信息失败");
@@ -96,5 +96,15 @@ class HfiveController extends Controller
 
 
 
+    }
+   function http_get($url){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);//向那个url地址上面发送
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);//设置发送http请求时需不需要证书
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//设置发送成功后要不要输出1 不输出，0输出
+        $output = curl_exec($ch);//执行
+        curl_close($ch);    //关闭
+        return $output;
     }
 }
