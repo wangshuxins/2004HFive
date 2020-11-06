@@ -8,19 +8,13 @@ use Illuminate\Support\Facades\Redis;
 class HfiveController extends Controller
 {
     public function hfive(){
-
-    $echoStr = $_GET["echostr"];
-
     if($this->checkSignature()){
-
-       echo $echoStr;
-
-       exit;
+          $xml_str = file_get_contents("php://input");
+          file_put_contents("wx.log",$xml_str);
     }
-
   }
 
-  public function checkSignature(){
+    public function checkSignature(){
   
     $signature = $_GET["signature"];
 
@@ -41,7 +35,8 @@ class HfiveController extends Controller
         return false;
     }
   }
-  public function assecc_token(){ 
+
+    public function assecc_token(){
 	  $key = "AccessToken";
 	  $get = Redis::get($key);
 	  if(!$get){
@@ -52,4 +47,5 @@ class HfiveController extends Controller
 
 	  echo $get;
   }
+
 }
