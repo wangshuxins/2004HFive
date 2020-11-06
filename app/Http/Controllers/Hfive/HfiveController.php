@@ -9,7 +9,6 @@ class HfiveController extends Controller
 {
     public function hfive()
     {
-		
         if ($this->checkSignature()) {
             $xml_str = file_get_contents("php://input");
             $data = simplexml_load_string($xml_str, 'SimpleXMLElement', LIBXML_NOCDATA);
@@ -17,13 +16,14 @@ class HfiveController extends Controller
             $data = $data->Event;
             if ($data[0] == "subscribe") {
                 $openid = $data->FromUserName;
-				
                 $access_token = $this->assecc_token();
                 $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token ."&openid=".$openid."&lang=zh_CN";
                 $fens = json_decode($this->http_get($url), true);
-              
+                if (isset($fens["errcode"])) {//不为空，说明获取信息失败了
+                    $this->writeLog("获取用户信息失败");
+                } else {
                     $content = "您好!感谢您的关注";
-                
+                }
             } else {
                 echo "false";
                 exit;
