@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Hfive;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Redis;
 class HfiveController extends Controller
 {
     public function hfive(){
@@ -40,5 +40,17 @@ class HfiveController extends Controller
     }else{
         return false;
     }
+  }
+  public function assecc_token(){ 
+	  $key = "AccessToken";
+	  $get = Redis::get($key);
+	  if(!$get){
+	      echo "没有缓存"."\r\n";
+		  $get = index();
+		  Redis::set($key,$get);
+		  Redis::expire($key,3600);
+	  }
+
+	  echo $get;
   }
 }

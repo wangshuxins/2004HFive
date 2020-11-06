@@ -6,14 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Redis;
-class IndexController extends Controller
+use App\Http\Controllers\Hfive\HfiveController;
+class IndexController extends HfiveController
 {
-    public function index(){
-	   $key = "key"; 
-	   $set = Redis::set($key,"789");
-	   $get = Redis::get($key);
-	   dd($get);
-	   $get = DB::table("test")->get()->toArray();
-	   dd($get);
-	}
+   public function index(){
+       $this->assecc_token();
+   }
 }
