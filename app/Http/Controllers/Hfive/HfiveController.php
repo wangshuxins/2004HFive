@@ -10,7 +10,8 @@ class HfiveController extends Controller
     public function hfive(){
     if($this->checkSignature()){
           $xml_str = file_get_contents("php://input");
-          file_put_contents("wx.log",$xml_str,FILE_APPEND);
+          $data = simplexml_load_string($xml_str,'SimpleXMLElement',LIBXML_NOCDATA);
+          file_put_contents("wx.log", $data,FILE_APPEND);
     }
   }
     public function checkSignature(){
