@@ -12,9 +12,7 @@ class HfiveController extends Controller
         if ($this->checkSignature()) {
             $xml_str = file_get_contents("php://input");
             $data = simplexml_load_string($xml_str, 'SimpleXMLElement', LIBXML_NOCDATA);
-
-            $data = $data->Event;
-            if ($data[0] == "subscribe") {
+            if ($data->Event == "subscribe") {
                 $openid = $data->FromUserName;
                 $access_token = $this->assecc_token();
                 $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token ."&openid=".$openid."&lang=zh_CN";
@@ -60,7 +58,6 @@ class HfiveController extends Controller
 		  Redis::set($key,$get);
 		  Redis::expire($key,3600);
 	  }
-
 	  echo $get;
   }
     private  function writeLog($data){
@@ -91,11 +88,6 @@ class HfiveController extends Controller
                     </xml>";
         //替换掉上面的参数用 sprintf
         echo sprintf($xml,$toUserName,$fromUserName,$time,$msgType,$content);
-
-
-
-
-
     }
    function http_get($url){
         $ch = curl_init();
