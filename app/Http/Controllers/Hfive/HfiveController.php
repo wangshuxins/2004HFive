@@ -81,12 +81,12 @@ class HfiveController extends Controller
         }
         file_put_contents("aaa.txt",$data);die;
     }
-    function xiaoxi($data,$content){
+    function xiaoxi($obj,$content){
         //我们可以恢复一个文本|图片|视图|音乐|图文列如文本
         //接收方账号
-        $toUserName=$data->FromUserName;
+        $toUserName=$obj->FromUserName;
         //开发者微信号
-        $fromUserName=$data->ToUserName;
+        $fromUserName=$obj->ToUserName;
         //时间戳
         $time=time();
         //返回类型
