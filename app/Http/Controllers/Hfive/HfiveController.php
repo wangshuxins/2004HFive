@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Hfive;
 
 use App\Http\Controllers\Controller;
@@ -9,28 +8,39 @@ class HfiveController extends Controller
 {
     public function hfive()
     {
-		
         if ($this->checkSignature()) {
-            $xml_str = file_get_contents("php://input");
-            $data = simplexml_load_string($xml_str, 'SimpleXMLElement', LIBXML_NOCDATA);
-            if ($data->Event == "subscribe") {
-                $openid = $data->FromUserName;
-				
-                $access_token = $this->assecc_token();
-                $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token ."&openid=".$openid."&lang=zh_CN";
-                $fens = json_decode($this->http_get($url), true);
-              
-                    if (isset($fens["errcode"])) {//不为空，说明获取信息失败了
-                    $this->writeLog("获取用户信息失败");
-                } else {
-                    $content = "您好!感谢您的关注";
-                }
-                
-            } else {
-                echo "false";
-                exit;
+            // $access_token=$this->get_access_token();  //跳方法  调 access_token  获取access_token
+            $str = file_get_contents("php://input");
+            $obj = simplexml_load_string($str, "SimpleXMLElement", LIBXML_NOCDATA);
+            // $obj=json_decode($obj, true);
+            // file_put_contents("aaa.txt",$obj);
+            // echo "ok";
+            switch ($obj->MsgType) {
+                case 'event':
+                    if ($obj->Event == "subscribe") {
+                        //用户扫码的 openID
+                        $openid = $obj->FromUserName;//获取发送方的 openid
+                        $access_token = $this->assecc_token();//获取token,
+                        $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" . $access_token . "&openid=" . $openid . "&lang=zh_CN";
+                        //掉接口
+                        $user = json_decode($this->http_get($url), true);//跳方法 用get  方式调第三方类库
+                        // $this->writeLog($fens);
+                        if (isset($user["errcode"])) {
+                            $this->writeLog("获取用户信息失败");
+                        } else {
+                            //说明查找成功 //可以加入数据库
+
+                            $content = "您好!感谢您的关注";
+                        }
+                    }
+                    if ($obj->Event == "unsubscribe") {
+                        $content = "取消关注成功,期待您下次关注";
+
+                    }
+                    break;
+
             }
-            echo $this->xiaoxi($data, $content);
+            echo $this->xiaoxi($obj, $content);
         }
     }
     public function checkSignature(){
@@ -69,8 +79,6 @@ class HfiveController extends Controller
             $data=json_encode($data);
         }
         file_put_contents("aaa.txt",$data);die;
-
-
     }
     function xiaoxi($data,$content){
         //我们可以恢复一个文本|图片|视图|音乐|图文列如文本
@@ -93,7 +101,7 @@ class HfiveController extends Controller
         //替换掉上面的参数用 sprintf
         echo sprintf($xml,$toUserName,$fromUserName,$time,$msgType,$content);
     }
-   function http_get($url){
+    function http_get($url){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);//向那个url地址上面发送
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -104,3 +112,4 @@ class HfiveController extends Controller
         return $output;
     }
 }
+
