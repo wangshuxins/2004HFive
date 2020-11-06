@@ -10,10 +10,9 @@ class HfiveController extends Controller
     public function hfive(){
     if($this->checkSignature()){
           $xml_str = file_get_contents("php://input");
-          file_put_contents("wx.log",$xml_str);
+          file_put_contents("wx.log",$xml_str,FILE_APPEND);
     }
   }
-
     public function checkSignature(){
   
     $signature = $_GET["signature"];
@@ -35,7 +34,6 @@ class HfiveController extends Controller
         return false;
     }
   }
-
     public function assecc_token(){
 	  $key = "AccessToken";
 	  $get = Redis::get($key);
@@ -47,5 +45,4 @@ class HfiveController extends Controller
 
 	  echo $get;
   }
-
 }
