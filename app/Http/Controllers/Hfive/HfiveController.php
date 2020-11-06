@@ -71,12 +71,12 @@ class HfiveController extends Controller
 
 
     }
-    function xiaoxi($obj,$content){
+    function xiaoxi($data,$content){
         //我们可以恢复一个文本|图片|视图|音乐|图文列如文本
         //接收方账号
-        $toUserName=$obj->FromUserName;
+        $toUserName=$data->FromUserName;
         //开发者微信号
-        $fromUserName=$obj->ToUserName;
+        $fromUserName=$data->ToUserName;
         //时间戳
         $time=time();
         //返回类型
