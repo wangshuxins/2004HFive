@@ -16,4 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get("/hfive","Hfive\HfiveController@hfive");
-
+Route::get("/token","Hfive\HfiveController@assecc_token");
+Route::get("/index","Index\IndexController@index");
