@@ -45,7 +45,6 @@ class HfiveController extends Controller
 	  $key = "AccessToken";
 	  $get = Redis::get($key);
 	  if(!$get){
-	      echo "没有缓存"."\r\n";
 		  $get = index();
 		  Redis::set($key,$get);
 		  Redis::expire($key,3600);
