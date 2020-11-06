@@ -12,9 +12,12 @@ class HfiveController extends Controller
     $echoStr = $_GET["echostr"];
 
     if($this->checkSignature()){
+
        echo $echoStr;
+
        exit;
     }
+
   }
 
   public function checkSignature(){
@@ -25,7 +28,7 @@ class HfiveController extends Controller
 
     $nonce = $_GET["nonce"];
 	
-    $token = 'hfive';
+    $token = env("WX_Token");
 
     $tmpArr = array($token, $timestamp, $nonce);
     sort($tmpArr, SORT_STRING);
