@@ -8,14 +8,13 @@ class HfiveController extends Controller
 {
     public function hfive()
     {
-       // $access_token = $this->assecc_token();//获取token,
-       // dd($access_token);
+
         if ($this->checkSignature()) {
             // $access_token=$this->get_access_token();  //跳方法  调 access_token  获取access_token
             $str = file_get_contents("php://input");
             $obj = simplexml_load_string($str, "SimpleXMLElement", LIBXML_NOCDATA);
             // $obj=json_decode($obj, true);
-            // file_put_contents("aaa.txt",$obj);
+             file_put_contents("ccc.log",$str,FILE_APPEND);
             // echo "ok";
             switch ($obj->MsgType) {
                 case 'event':
@@ -75,7 +74,7 @@ class HfiveController extends Controller
 		  Redis::set($key,$get);
 		  Redis::expire($key,3600);
 	  }
-	 return $get;
+	  return $get;
   }
     private  function writeLog($data){
         if(is_object($data) ||is_array($data)){
