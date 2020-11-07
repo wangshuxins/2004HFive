@@ -8,6 +8,8 @@ class HfiveController extends Controller
 {
     public function hfive()
     {
+       // $access_token = $this->assecc_token();//获取token,
+       // dd($access_token);
         if ($this->checkSignature()) {
             // $access_token=$this->get_access_token();  //跳方法  调 access_token  获取access_token
             $str = file_get_contents("php://input");
@@ -20,13 +22,14 @@ class HfiveController extends Controller
                     if ($obj->Event == "subscribe") {
                         //用户扫码的 openID
                         $openid = $obj->FromUserName;//获取发送方的 openid
-                        $access_token = $this->assecc_token();//获取token,
-                        $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" . $access_token . "&openid=" . $openid . "&lang=zh_CN";
+                        $access_token = $this->assecc_token();
+                        $url="https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid=".$openid."&lang=zh_CN";
                         //掉接口
                         $user = json_decode($this->http_get($url), true);//跳方法 用get  方式调第三方类库
                         // $this->writeLog($fens);
                         if (isset($user["errcode"])) {
-                            $this->writeLog("获取用户信息失败");
+                            file_put_contents("bbb.txt",$user["errcode"]);
+                            $this->writeLog("获取用户信息失败s");
                         } else {
                             //说明查找成功 //可以加入数据库
 
@@ -72,7 +75,7 @@ class HfiveController extends Controller
 		  Redis::set($key,$get);
 		  Redis::expire($key,3600);
 	  }
-	  echo $get;
+	 return $get;
   }
     private  function writeLog($data){
         if(is_object($data) ||is_array($data)){
