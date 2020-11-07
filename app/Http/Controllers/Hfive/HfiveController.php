@@ -9,6 +9,7 @@ class HfiveController extends Controller
 {
     public function hfive()
     {
+
         if ($this->checkSignature()) {
             // $access_token=$this->get_access_token();  //跳方法  调 access_token  获取access_token
             $str = file_get_contents("php://input");
@@ -73,7 +74,7 @@ class HfiveController extends Controller
 		  Redis::set($key,$get);
 		  Redis::expire($key,3600);
 	  }
-	  echo $get;
+	  return $get;
   }
     private  function writeLog($data){
         if(is_object($data) ||is_array($data)){
