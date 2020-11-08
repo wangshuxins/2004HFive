@@ -83,7 +83,6 @@ class HfiveController extends Controller
                         if ($obj->Content == "天气") {
                             $content = "您好,请输入您想查询的您的地区的天气，比如:'北京'";
                         }else{
-                            $city =  $obj->Content;
                             $city =  urlencode("北京");
                             $key = "2f3d1615c28f0a5bc54da5082c4c1c0c";
                             $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;
