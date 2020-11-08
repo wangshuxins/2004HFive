@@ -117,6 +117,7 @@ class HfiveController extends Controller
                                     "\r\n"."温度:".$user['result']['future'][4]['temperature'].
                                     "\r\n"."风向:".$user['result']['future'][4]['direct'];
                             }else{
+                                file_put_contents("ddd.txt",$obj->Content);
                                 $content = "此公众号还没开放聊天功能，您可以回复'天气'进行天气查询，更多功能正在火速开放，尽情期待。。。。";
                             }
                         }
