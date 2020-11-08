@@ -14,7 +14,9 @@ class IndexController extends HfiveController
        $key = "2f3d1615c28f0a5bc54da5082c4c1c0c";
        $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;
        $user = json_decode($this->http_get($url), true);//跳方法 用get  方式调第三方类库
-       dd($user);
+
+       $content = $user['result']['city']."天气情况:"."\r\n"."天气:".$user['result']['realtime']['info']."\r\n"."温度:".$user['result']['realtime']['temperature']."\r\n"."湿度:".$user['result']['realtime']['humidity']."\r\n"."风向:".$user['result']['realtime']['direct']."\r\n"."风力:".$user['result']['realtime']['power']."\r\n"."空气质量:".$user['result']['realtime']['aqi'];
+       dd($content);
        exit;
        $a="<xml><ToUserName><![CDATA[gh_2bdc7cc9336f]]></ToUserName>
               <FromUserName><![CDATA[oM539vhyM4XQe1cp194eOWPJZl6M]]></FromUserName>
