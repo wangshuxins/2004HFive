@@ -17,6 +17,7 @@ class IndexController extends HfiveController
             <Event><![CDATA[subscribe]]></Event>
             <EventKey><![CDATA[]]></EventKey></xml>";
        $obj = simplexml_load_string($a, "SimpleXMLElement", LIBXML_NOCDATA);
+       dd($obj);
        $openid = $obj->FromUserName;
        $access_token = $this->assecc_token();//获取token,
        $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid=".$openid."&lang=zh_CN";
