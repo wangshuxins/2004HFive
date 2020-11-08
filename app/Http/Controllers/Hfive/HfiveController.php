@@ -77,10 +77,14 @@ class HfiveController extends Controller
                         User::where("openid",$user['openid'])->update(['subscribe'=>0]);
                         $content = "取消关注成功,期待您下次关注";
                     }
-                    if ($obj->Event == "text") {
-                       $content = "text";
-                    }
+
                     break;
+                case 'text';
+                        if ($obj->Content == "天气") {
+                            $content = "text";
+                        }
+                    break;
+
             }
             echo $this->xiaoxi($obj, $content);
         }
