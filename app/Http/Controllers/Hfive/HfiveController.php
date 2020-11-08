@@ -83,11 +83,11 @@ class HfiveController extends Controller
                         if ($obj->Content == "天气") {
                             $content = "您好,请输入您想查询的您的地区的天气，比如:'北京'";
                         }else{
-                            $city =  urlencode("北京");
+                            $city =  urlencode($obj->Content);
                             $key = "2f3d1615c28f0a5bc54da5082c4c1c0c";
                             $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;
                             $user = json_decode($this->http_get($url), true);//跳方法 用get  方式调第三方类库
-                            if($user['reason']=="查询成功"){
+                            if($user['reason']=="查询成功!"){
                                 $content = $user['result']['city']."天气情况:"."\r\n"."天气:".$user['result']['realtime']['info']."\r\n"."温度:".$user['result']['realtime']['temperature']."\r\n"."湿度:".$user['result']['realtime']['humidity']."\r\n"."风向:".$user['result']['realtime']['direct']."\r\n"."风力:".$user['result']['realtime']['power']."\r\n"."空气质量:".$user['result']['realtime']['aqi'];
                             }else{
                                 $content = "请输入正确的天气情况";
