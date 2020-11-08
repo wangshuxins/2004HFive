@@ -87,7 +87,11 @@ class HfiveController extends Controller
                             $key = "2f3d1615c28f0a5bc54da5082c4c1c0c";
                             $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;
                             $user = json_decode($this->http_get($url), true);//跳方法 用get  方式调第三方类库
-                            file_put_contents("eee.txt",$user);
+                            if($user['reason']=="查询成功"){
+                                $content = $user['city']."天气情况:".$user['realtime']['info']."温度:".$user['realtime']['temperature']."湿度:".$user['realtime']['humidity']."风向:".$user['realtime']['direct']."风力:".$user['realtime']['power']."空气质量:".$user['realtime']['api'];
+                            }else{
+                                $content = "请输入正确的天气情况";
+                            }
                         }
                     break;
 
