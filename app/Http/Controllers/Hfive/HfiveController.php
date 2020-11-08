@@ -81,7 +81,7 @@ class HfiveController extends Controller
                     break;
                 case 'text';
                         if ($obj->Content == "天气") {
-                            $content = "text";
+                            $content = "您好,请输入您想查询的您的地区的天气，比如:'北京'";
                         }
                     break;
 

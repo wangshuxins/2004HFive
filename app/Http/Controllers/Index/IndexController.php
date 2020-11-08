@@ -10,6 +10,7 @@ use App\Http\Controllers\Hfive\HfiveController;
 class IndexController extends HfiveController
 {
    public function index(){
+       urlencode
        $a="<xml><ToUserName><![CDATA[gh_2bdc7cc9336f]]></ToUserName>
               <FromUserName><![CDATA[oM539vhyM4XQe1cp194eOWPJZl6M]]></FromUserName>
               <CreateTime>1604716746</CreateTime>
