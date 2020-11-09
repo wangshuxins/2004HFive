@@ -150,7 +150,6 @@ class HfiveController extends Controller
 		              $url = "http://openapi.tuling123.com/openapi/api/v2";
 
                                $data  = [
-									"reqType"=>2,
                                     'perception'=>[
                                         'inputText'=>[
                                             'text'=>$perception
