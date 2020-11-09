@@ -8,9 +8,65 @@ use DB;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\Hfive\HfiveController;
 use GuzzleHttp\Client;
+use App\Model\PWxMedia;
 class IndexController extends HfiveController
 {
    public function index(){
+	   $a="<xml><ToUserName><![CDATA[gh_2bdc7cc9336f]]></ToUserName>
+            <FromUserName><![CDATA[oM539vl7WgtGfPqbW3nYOTTT6HNQ]]></FromUserName>
+            <CreateTime>1604919519</CreateTime>
+            <MsgType><![CDATA[image]]></MsgType>
+            <PicUrl><![CDATA[http://mmbiz.qpic.cn/mmbiz_jpg/7Fqb8H4ib0b5km9x7mdGiccyfF3H3qggWLqyicibgibG7OVLH5CsQNr3uWmmctsvCiayzEnXzMicIicm5mRuzcYjwrHprw/0]]></PicUrl>
+            <MsgId>22976919836180757</MsgId>
+            <MediaId><![CDATA[KjkAh2uI_nlWCu2swwjcWQFdSp-s7zFd1OZuZpQEEJ2drNFc43vQ6O5C3dENfbkB]]></MediaId>
+       </xml>";
+	   $obj = simplexml_load_string($a, "SimpleXMLElement", LIBXML_NOCDATA);
+	   $datat = json_decode(json_encode($obj),true);
+
+	   
+
+	   $data = [
+		      "tousername"=>$datat['ToUserName'],  
+		      "fromusername"=>$datat['FromUserName'],
+		      "createtime"=>$datat['CreateTime'],
+		      "msgtype"=>$datat['MsgType'],
+		      "picurl"=>$datat['PicUrl'],
+		      "msgid" =>$datat['MsgId'],
+		      "mediaid"=>$datat['MediaId']
+	   ];
+       PWxMedia::insert($data);
+	   exit;
+
+
+
+
+        $client = new Client();
+
+		$access_token = $this->assecc_token();
+
+        $url = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=".$access_token."&type=image";
+
+       //发送post请求 （微信创建临时素材）
+        $response = $client->request('POST',$url,[      
+         'verify'    => false,    //忽略 HTTPS证书 验证
+         'multipart' => [
+         [
+            'name'  => 'media',
+            'contents'  => fopen('aaa.png','r') //上传的文件路径]
+           ],
+         ]
+       ]); 
+
+		$json_str = $response->getBody();
+		echo $json_str;
+
+		exit;
+
+
+
+
+
+
 	   $client = new Client();
 	    $city =  urlencode("北京");
        $key = "2f3d1615c28f0a5bc54da5082c4c1c0c";

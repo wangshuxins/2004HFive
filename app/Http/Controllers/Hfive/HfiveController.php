@@ -165,7 +165,11 @@ class HfiveController extends Controller
 								$content = $datas['results'][0]['values']['text'];
                                 $content = $content;
 				break;
+				case "image";
+				    file_put_contents("ddd.txt",$str);
+				break;
             }
+            
             echo $this->xiaoxi($obj, $content);
         }
     }
