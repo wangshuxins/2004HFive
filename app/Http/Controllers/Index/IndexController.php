@@ -49,10 +49,6 @@ class IndexController extends HfiveController
 								dd($aa);
 								exit;
 
-
-
-
-
        $apiKey="3537d051f0ec483e86f81fbc8689ec9d";
        $perception = $obj->Content;
        $url = "http://openapi.tuling123.com/openapi/api/v2";

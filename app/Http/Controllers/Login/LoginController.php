@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Cookie;
 class LoginController extends Controller
 {
     public function login(){
-	    
 	    return view("wetch.login.login");
 	
 	}

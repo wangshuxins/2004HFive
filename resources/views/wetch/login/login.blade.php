@@ -31,11 +31,19 @@
 				<form action="http://admin.1912.com/login/store" name="f" method="post">
 					<input type="hidden" name="_token" value="mseqeQpBTsmT57a70lgVWEuVxgBgAsnGgG8psbvl">					<div class="input_outer">
 						<span class="u_user"></span>
-						<input name="wetch_user" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
+						@if(session('users'))
+							<input name="wetch_user" class="text" value="{{session('users')['wetch_user']}}"  style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
+					    @else
+						   <input name="wetch_user" class="text"  style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
+						@endif
 					</div>
 					<div class="input_outer">
 						<span class="us_uer"></span>
-						<input name="wetch_pwd" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+						@if(session('users'))
+						<input name="wetch_pwd" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" value="{{session('users')['wetch_pwd']}}" type="password" placeholder="请输入密码">
+						 @else
+                         <input name="wetch_pwd" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" value="" type="password" placeholder="请输入密码">
+						 @endif
 					</div>
 					<input name="rember" value="1" type="checkbox" />
     					<span>七天免登录</span>
