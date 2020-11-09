@@ -20,7 +20,7 @@ Route::get("/token","Hfive\HfiveController@assecc_token");
 
 
 //登陆
-Route::get("/login","Login\LoginController@login");
+Route::get("/login","Login\LoginController@login");;
 Route::post("/dologin","Login\LoginController@dologin");
 
 //练习

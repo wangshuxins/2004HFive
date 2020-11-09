@@ -9,8 +9,15 @@ use Illuminate\Support\Facades\Cookie;
 class LoginController extends Controller
 {
     public function login(){
-	    return view("wetch.login.login");
-	
+         $cookie_login = Request()->cookie('rember');
+		 if($cookie_login){
+                  return redirect("/list");
+            }else{
+                  return view("wetch.login.login");
+		
+            }
+		    
+        	
 	}
 	public function dologin(){
 	
