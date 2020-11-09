@@ -167,7 +167,7 @@ class HfiveController extends Controller
 				break;
 				case "image";
 				    file_put_contents("ddd.txt",$str);
-				    $content ="此功能暂时还未开放，您可以发消息与图灵机器人'小柯'进行交流或者输入'天气查询某地区的天气'";
+				    $content ="此功能暂时还未开放，您可以发消息与图灵机器人'小柯'进行交流或者输入'天气'查询某地区的天气状况，更多功能正在火速进行中，尽情期待。。。";
 				break;
             }
             
