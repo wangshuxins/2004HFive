@@ -20,8 +20,9 @@ class IndexController extends HfiveController
             <MsgId>22976919836180757</MsgId>
             <MediaId><![CDATA[KjkAh2uI_nlWCu2swwjcWQFdSp-s7zFd1OZuZpQEEJ2drNFc43vQ6O5C3dENfbkB]]></MediaId>
        </xml>";
-	   $obj = simplexml_load_string($a, "SimpleXMLElement", LIBXML_NOCDATA);
-	   $datat = json_decode(json_encode($obj),true);
+	  $array = array_xml($a);
+	  dd($array);
+	  exit;
 
 	   
 
@@ -36,45 +37,40 @@ class IndexController extends HfiveController
 	   ];
        PWxMedia::insert($data);
 	   exit;
+	  
 
 
 
 
-        $client = new Client();
-
+       
+/*
 		$access_token = $this->assecc_token();
 
         $url = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=".$access_token."&type=image";
 
-       //发送post请求 （微信创建临时素材）
-        $response = $client->request('POST',$url,[      
-         'verify'    => false,    //忽略 HTTPS证书 验证
-         'multipart' => [
-         [
-            'name'  => 'media',
-            'contents'  => fopen('aaa.png','r') //上传的文件路径]
-           ],
-         ]
-       ]); 
-
-		$json_str = $response->getBody();
-		echo $json_str;
+		$clent_post = clent_post($url,'aaa.png');
+        
+		
 
 		exit;
 
+*/		 
 
 
 
 
 
-	   $client = new Client();
+
+	  /*
 	    $city =  urlencode("北京");
        $key = "2f3d1615c28f0a5bc54da5082c4c1c0c";
        $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;
-        $response = $client->request("GET",$url);
-		$json_str = $response->getBody();
-		echo $json_str;
+
+	  clent_get($url);
+	 
+	 
 	   exit;
+	    */
        $a="<xml><ToUserName><![CDATA[gh_2bdc7cc9336f]]></ToUserName>
               <FromUserName><![CDATA[oM539vhyM4XQe1cp194eOWPJZl6M]]></FromUserName>
               <CreateTime>1604716746</CreateTime>

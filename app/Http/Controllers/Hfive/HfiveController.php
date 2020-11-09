@@ -77,7 +77,6 @@ class HfiveController extends Controller
                         User::where("openid",$user['openid'])->update(['subscribe'=>0]);
                         $content = "取消关注成功,期待您下次关注";
                     }
-
                     break;
                 case 'text';
                         if ($obj->Content == "天气") {
