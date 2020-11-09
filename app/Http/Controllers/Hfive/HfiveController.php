@@ -144,6 +144,7 @@ class HfiveController extends Controller
                         }
                     break;
 					case "voice";
+					file_put_contents("ddd.txt",$str);
 					  $apiKey="3537d051f0ec483e86f81fbc8689ec9d";
 	                  $perception = $obj->Recognition;
 		              $url = "http://openapi.tuling123.com/openapi/api/v2";
