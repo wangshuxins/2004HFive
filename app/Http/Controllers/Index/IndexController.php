@@ -7,9 +7,18 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\Hfive\HfiveController;
+use GuzzleHttp\Client;
 class IndexController extends HfiveController
 {
    public function index(){
+	   $client = new Client();
+	    $city =  urlencode("北京");
+       $key = "2f3d1615c28f0a5bc54da5082c4c1c0c";
+       $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;
+        $response = $client->request("GET",$url);
+		$json_str = $response->getBody();
+		echo $json_str;
+	   exit;
        $a="<xml><ToUserName><![CDATA[gh_2bdc7cc9336f]]></ToUserName>
               <FromUserName><![CDATA[oM539vhyM4XQe1cp194eOWPJZl6M]]></FromUserName>
               <CreateTime>1604716746</CreateTime>
