@@ -118,7 +118,28 @@ class HfiveController extends Controller
                                     "\r\n"."风向:".$user['result']['future'][4]['direct'];
                             }else{
                                 file_put_contents("ddd.txt",$str);
-                                $content = "此公众号还没开放聊天功能，您可以回复'天气'进行天气查询，更多功能正在火速开放，尽情期待。。。。";
+                                $apiKey="3537d051f0ec483e86f81fbc8689ec9d";
+                                $perception = $obj->Content;
+                                $url = "http://openapi.tuling123.com/openapi/api/v2";
+                                $data  = [
+                                    'perception'=>[
+                                        'inputText'=>[
+                                            'text'=>$perception
+                                        ],
+                                    ],
+                                    'userInfo'=>[
+                                        'apiKey'=>$apiKey,
+                                        'userId'=>'520',
+                                    ],
+                                ];
+                                $data = json_encode($data);
+
+
+								$datas = json_decode($this->curl($url,$data),true);
+
+								$content = $datas['results'][0]['values']['text'];
+
+                                $content = $content;
                             }
                         }
                     break;
