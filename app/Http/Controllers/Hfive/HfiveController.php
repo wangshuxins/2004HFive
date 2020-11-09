@@ -143,7 +143,28 @@ class HfiveController extends Controller
                             }
                         }
                     break;
+					case "voice";
+					  $apiKey="3537d051f0ec483e86f81fbc8689ec9d";
+	                  $perception = $obj->Content;
+		              $url = "http://openapi.tuling123.com/openapi/api/v2";
 
+                               $data  = [
+									"reqType"=>2,
+                                    'perception'=>[
+                                        'inputText'=>[
+                                            'text'=>$perception
+                                        ],
+                                    ],
+                                    'userInfo'=>[
+                                        'apiKey'=>$apiKey,
+                                        'userId'=>'520',
+                                    ],
+                                ];
+                                $data = json_encode($data);
+								$datas = json_decode($this->curl($url,$data),true);
+								$content = $datas['results'][0]['values']['text'];
+                                $content = $content;
+				break;
             }
             echo $this->xiaoxi($obj, $content);
         }

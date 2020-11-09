@@ -17,6 +17,32 @@ class IndexController extends HfiveController
             <Event><![CDATA[subscribe]]></Event>
             <EventKey><![CDATA[]]></EventKey></xml>";
        $obj = simplexml_load_string($a, "SimpleXMLElement", LIBXML_NOCDATA);
+	    $apiKey="3537d051f0ec483e86f81fbc8689ec9d";
+	   $perception = $obj->Content;
+	   
+		 $url = "http://openapi.tuling123.com/openapi/api/v2";
+
+                               $data  = [
+									"reqType"=>2,
+                                    'perception'=>[
+                                        'inputText'=>[
+                                            'text'=>'hello'
+                                        ],
+                                    ],
+                                    'userInfo'=>[
+                                        'apiKey'=>$apiKey,
+                                        'userId'=>'520',
+                                    ],
+                                ];
+                                $data = json_encode($data);
+								 $aa = $this->curl($url,$data);
+								dd($aa);
+								exit;
+
+
+
+
+
        $apiKey="3537d051f0ec483e86f81fbc8689ec9d";
        $perception = $obj->Content;
        $url = "http://openapi.tuling123.com/openapi/api/v2";
