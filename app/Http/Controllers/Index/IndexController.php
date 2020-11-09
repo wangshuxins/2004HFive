@@ -26,7 +26,8 @@ class IndexController extends HfiveController
 									"reqType"=>2,
                                     'perception'=>[
                                         'inputText'=>[
-                                            'text'=>'hello'
+								      
+                                            'inputMedia'=>'hello'
                                         ],
                                     ],
                                     'userInfo'=>[
