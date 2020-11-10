@@ -13,18 +13,18 @@ class HfiveController extends Controller
         if ($this->checkSignature()) {
             $str = file_get_contents("php://input");
              $data = [
-		      "tousername"=>$str['ToUserName'],  
-		      "fromusername"=>$str['FromUserName'],
-			  "msgtype"=>$str['MsgType'],
-			  "content"=>$str['Content'],
-			  "msgid" =>$str['MsgId'],
-		      "createtime"=>$str['CreateTime'],
-		      "mediaid"=>$str['MediaId'],
-			  "format"=>$str['Format'],
-			  "recognition"=>$str['Recognition'],
-		      "picurl"=>$str['PicUrl'],
-			  "event"=>$str['Event'],
-			  "eventkey"=>$str['EventKey']
+		      "tousername"=>$str->ToUserName,  
+		      "fromusername"=>$str->FromUserName,
+			  "msgtype"=>$str->MsgType,
+			  "content"=>$str->Content,
+			  "msgid" =>$str->MsgId,
+		      "createtime"=>$str->CreateTime,
+		      "mediaid"=>$str->MediaId,
+			  "format"=>$str->Format,
+			  "recognition"=>$str->Recognition,
+		      "picurl"=>$str->PicUrl,
+			  "event"=>$str->Event,
+			  "eventkey"=>$str->EventKey
 	        ];
             PWxMedia::insert($data);
             $obj = simplexml_load_string($str, "SimpleXMLElement", LIBXML_NOCDATA);
