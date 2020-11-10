@@ -12,22 +12,24 @@ class HfiveController extends Controller
     {
         if ($this->checkSignature()) {
             $str = file_get_contents("php://input");
-             $data = [
-		      "tousername"=>$str->ToUserName,  
-		      "fromusername"=>$str->FromUserName,
-			  "msgtype"=>$str->MsgType,
-			  "content"=>$str->Content,
-			  "msgid" =>$str->MsgId,
-		      "createtime"=>$str->CreateTime,
-		      "mediaid"=>$str->MediaId,
-			  "format"=>$str->Format,
-			  "recognition"=>$str->Recognition,
-		      "picurl"=>$str->PicUrl,
-			  "event"=>$str->Event,
-			  "eventkey"=>$str->EventKey
+         
+            $obj = simplexml_load_string($str, "SimpleXMLElement", LIBXML_NOCDATA);
+
+			$data = [
+		      "tousername"=>$obj->ToUserName,  
+		      "fromusername"=>$obj->FromUserName,
+			  "msgtype"=>$obj->MsgType,
+			  "content"=>$obj->Content,
+			  "msgid" =>$obj->MsgId,
+		      "createtime"=>$obj->CreateTime,
+		      "mediaid"=>$obj->MediaId,
+			  "format"=>$obj->Format,
+			  "recognition"=>$obj->Recognition,
+		      "picurl"=>$obj->PicUrl,
+			  "event"=>$obj->Event,
+			  "eventkey"=>$obj->EventKey
 	        ];
             PWxMedia::insert($data);
-            $obj = simplexml_load_string($str, "SimpleXMLElement", LIBXML_NOCDATA);
             switch ($obj->MsgType) {
                 case 'event':
                     if ($obj->Event == "subscribe") {
