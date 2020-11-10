@@ -78,12 +78,47 @@ class HfiveController extends Controller
                         $content = "取消关注成功,期待您下次关注";
                     }
 					 if ($obj->Event == "CLICK") {
-                       
-                        $content = "如查询天气请输入'天气'两字";
-                    }
 
+
+
+                       
+                       $city =  urlencode("北京");
+                            $key = "2f3d1615c28f0a5bc54da5082c4c1c0c";
+                            $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;
+                            $user = json_decode($this->http_get($url), true);//跳方法 用get  方式调第三方类库
+                            if($user['reason']=="查询成功!"){
+                                $content = $user['result']['city']."天气情况:".
+                                    "\r\n"."天气:".$user['result']['realtime']['info'].
+                                    "\r\n"."温度:".$user['result']['realtime']['temperature'].
+                                    "\r\n"."湿度:".$user['result']['realtime']['humidity'].
+                                    "\r\n"."风向:".$user['result']['realtime']['direct'].
+                                    "\r\n"."风力:".$user['result']['realtime']['power'].
+                                    "\r\n"."空气质量:".$user['result']['realtime']['aqi'].
+                                    "\r\n"."近五天天气情况如下:".
+                                    "\r\n".$user['result']['future'][0]['date'].":".
+                                    "\r\n"."天气:".$user['result']['future'][0]['weather'].
+                                    "\r\n"."温度:".$user['result']['future'][0]['temperature'].
+                                    "\r\n"."风向:".$user['result']['future'][0]['direct'].
+                                    "\r\n".$user['result']['future'][1]['date'].":".
+                                    "\r\n"."天气:".$user['result']['future'][1]['weather'].
+                                    "\r\n"."温度:".$user['result']['future'][1]['temperature'].
+                                    "\r\n"."风向:".$user['result']['future'][1]['direct'].
+                                    "\r\n".$user['result']['future'][2]['date'].":".
+                                    "\r\n"."天气:".$user['result']['future'][2]['weather'].
+                                    "\r\n"."温度:".$user['result']['future'][2]['temperature'].
+                                    "\r\n"."风向:".$user['result']['future'][2]['direct'].
+                                    "\r\n".$user['result']['future'][3]['date'].":".
+                                    "\r\n"."天气:".$user['result']['future'][3]['weather'].
+                                    "\r\n"."温度:".$user['result']['future'][3]['temperature'].
+                                    "\r\n"."风向:".$user['result']['future'][3]['direct'].
+                                    "\r\n".$user['result']['future'][4]['date'].":".
+                                    "\r\n"."天气:".$user['result']['future'][4]['weather'].
+                                    "\r\n"."温度:".$user['result']['future'][4]['temperature'].
+                                    "\r\n"."风向:".$user['result']['future'][4]['direct'];
+                     }
+                    }
                     break;
-                case 'text':
+                    case 'text':
                         if ($obj->Content == "天气") {
                             $content = "您好,请输入您想查询的您的地区的天气，比如:'北京'";
                         }else{
@@ -143,7 +178,6 @@ class HfiveController extends Controller
 
 								$content = $datas['results'][0]['values']['text'];
 
-                                $content = $content;
                             }
                         }
                     break;

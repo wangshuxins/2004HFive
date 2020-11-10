@@ -12,7 +12,7 @@ use App\Model\PWxMedia;
 class IndexController extends HfiveController
 {
    public function index(){ 
-
+  /*
     $ip="192.168.162.1";
         $durl = 'http://ip.taobao.com/service/getIpInfo.php?ip='.$ip;
     // 初始化
@@ -45,7 +45,7 @@ exit;
 
        
    $city =  urlencode("北京");
-   /*
+ 
     $menu =[
 	 "button"=>[
        [	
@@ -68,7 +68,7 @@ exit;
      "button"=>[
      [	
           "type"=>"click",
-          "name"=>"撩我",
+          "name"=>"北京天气状况",
           "key"=>"wx_520"
       ],
       [
