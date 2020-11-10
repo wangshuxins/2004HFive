@@ -11,7 +11,8 @@ class HfiveController extends Controller
     {
         if ($this->checkSignature()) {
             $str = file_get_contents("php://input");
-            file_put_contents("ddd.txt",$str);
+            file_put_contents("ddd.txt",$str,FILE_APPEND);
+			exit;
             $obj = simplexml_load_string($str, "SimpleXMLElement", LIBXML_NOCDATA);
             switch ($obj->MsgType) {
                 case 'event':
@@ -115,7 +116,7 @@ class HfiveController extends Controller
                                     "\r\n"."天气:".$user['result']['future'][4]['weather'].
                                     "\r\n"."温度:".$user['result']['future'][4]['temperature'].
                                     "\r\n"."风向:".$user['result']['future'][4]['direct'];
-                     }
+                         }
                     }
                     break;
                     case 'text':
