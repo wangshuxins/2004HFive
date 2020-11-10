@@ -79,7 +79,7 @@ class HfiveController extends Controller
                     }
 					 if ($obj->Event == "CLICK") {
                        
-                        $content = "天气";
+                        $content = "如查询天气请输入'天气'两字";
                     }
 
                     break;
