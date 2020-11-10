@@ -11,27 +11,70 @@ use GuzzleHttp\Client;
 use App\Model\PWxMedia;
 class IndexController extends HfiveController
 {
-   public function index(){
-
-/*
-     $menu = [
-           
-     "button"=>[
-        [	
+   public function index(){ 
+   $city =  urlencode("北京");
+   /*
+    $menu =[
+	 "button"=>[
+       [	
           "type"=>"click",
           "name"=>"今日歌曲",
-          "key"=>"V1001_TODAY_MUSIC"
-        ],
+          "key"=>"wx_2020"
+       ],
+       [       	
+           "type"=>"view",
+           "name"=>"今日天气",
+           "url"=>"http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=2f3d1615c28f0a5bc54da5082c4c1c0c"
+       ],      
       ]
-   ];
+    ];
+	*/
+
+
+
+     $menu =[
+     "button"=>[
+     [	
+          "type"=>"click",
+          "name"=>"撩我",
+          "key"=>"wx_520"
+      ],
+      [
+           "name"=>"菜单",
+           "sub_button"=>[
+           [	
+               "type"=>"view",
+               "name"=>"搜索",
+               "url"=>"http://www.baidu.com/"
+            ], 
+            [
+                 "type"=> "pic_sysphoto", 
+                 "name"=> "系统拍照发图", 
+                 "key"=> "rselfmenu_1_0", 
+                 "sub_button"=> [ ]
+             ],
+            [
+                  "type"=> "pic_photo_or_album", 
+                  "name"=> "拍照或者相册发图", 
+                  "key"=> "rselfmenu_1_1", 
+                  "sub_button"=> [ ]
+            ],
+            [
+             "type"=> "pic_weixin", 
+                    "name"=> "微信相册发图", 
+                    "key"=> "rselfmenu_1_2", 
+                    "sub_button"=> [ ]
+			],
+       ],
+     ],
+   ],
+];
+
 	$access_token = $this->assecc_token();
-	$url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$access_token;
+    $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$access_token;
 	client_menu($url,$menu);
-
-
-
     exit;
-*/
+
 
       $key="97523726128a559ff65855dfd1fdd9bc";
                             $url="http://v.juhe.cn/joke/content/list.php?key=".$key."&page=".rand(1,20)."&pagesize=15&sort=desc&time=".time();

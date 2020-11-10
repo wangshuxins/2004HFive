@@ -57,7 +57,7 @@ use GuzzleHttp\Client;
 		  $response = $client->request('POST',$url,[
 
 			  'verify' => false,
-			  'body'=> json_encode($menu)
+			  'body'=> json_encode($menu,JSON_UNESCAPED_UNICODE)
 			  
 		  ]);
 		  $data = $response->getBody();
