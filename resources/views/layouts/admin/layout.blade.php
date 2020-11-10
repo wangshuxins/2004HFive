@@ -245,7 +245,7 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="" class="img-circle" alt="User Image">
+                                    <img src="http://thirdwx.qlogo.cn/mmopen/qlk51QmTTDQ1wAI5PWlP6ePhYQFS2iaficXEaO9ekZBruKTkSWMISIFI2kVrIVnY1YdibaOx5j5L67CyriaAExgyeTD3EnyTuqNH/132" class="img-circle" alt="User Image">
                                     <p>
                                     
                                         <small>最后登录 100AM</small>
