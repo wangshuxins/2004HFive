@@ -238,7 +238,9 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="http://thirdwx.qlogo.cn/mmopen/qlk51QmTTDQ1wAI5PWlP6ePhYQFS2iaficXEaO9ekZBruKTkSWMISIFI2kVrIVnY1YdibaOx5j5L67CyriaAExgyeTD3EnyTuqNH/132" class="user-image" alt="User Image">
+								@if{{session('users')}}
                                 <span class="hidden-xs">{{session('users')['wetch_user']}}</span>
+								@endif
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -278,7 +280,9 @@
                         <img  src="http://thirdwx.qlogo.cn/mmopen/qlk51QmTTDQ1wAI5PWlP6ePhYQFS2iaficXEaO9ekZBruKTkSWMISIFI2kVrIVnY1YdibaOx5j5L67CyriaAExgyeTD3EnyTuqNH/132" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
+					@if{{session('users')}}
                         <p>{{session('users')['wetch_user']}}</p>
+				    @endif
                         <a href="#"><i class="fa fa-circle text-success"></i>在线</a>
                     </div>
                 </div>

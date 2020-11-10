@@ -13,7 +13,25 @@ class IndexController extends HfiveController
 {
    public function index(){
 
+/*
+     $menu = [
+           
+     "button"=>[
+        [	
+          "type"=>"click",
+          "name"=>"今日歌曲",
+          "key"=>"V1001_TODAY_MUSIC"
+        ],
+      ]
+   ];
+	$access_token = $this->assecc_token();
+	$url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$access_token;
+	client_menu($url,$menu);
 
+
+
+    exit;
+*/
 
       $key="97523726128a559ff65855dfd1fdd9bc";
                             $url="http://v.juhe.cn/joke/content/list.php?key=".$key."&page=".rand(1,20)."&pagesize=15&sort=desc&time=".time();

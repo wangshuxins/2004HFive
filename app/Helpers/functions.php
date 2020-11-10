@@ -51,7 +51,7 @@ use GuzzleHttp\Client;
 		echo $json_str;
 	  }
 
-	  function client_menu($menu){
+	  function client_menu($url,$menu){
 	     
 		  $client = new Client();
 		  $response = $client->request('POST',$url,[
