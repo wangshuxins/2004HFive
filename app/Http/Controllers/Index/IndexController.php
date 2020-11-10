@@ -12,6 +12,22 @@ use App\Model\PWxMedia;
 class IndexController extends HfiveController
 {
    public function index(){ 
+
+
+
+$a = "<xml><ToUserName><![CDATA[gh_2bdc7cc9336f]]></ToUserName>
+<FromUserName><![CDATA[oM539vl7WgtGfPqbW3nYOTTT6HNQ]]></FromUserName>
+<CreateTime>1604991376</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[wx_520]]></EventKey>
+</xml>";
+
+$a = array_xml($a);
+dd($a);
+exit;
+
+       
    $city =  urlencode("北京");
    /*
     $menu =[
