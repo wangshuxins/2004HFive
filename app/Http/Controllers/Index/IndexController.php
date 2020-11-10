@@ -12,6 +12,24 @@ use App\Model\PWxMedia;
 class IndexController extends HfiveController
 {
    public function index(){
+
+
+
+      $key="97523726128a559ff65855dfd1fdd9bc";
+                            $url="http://v.juhe.cn/joke/content/list.php?key=".$key."&page=".rand(1,20)."&pagesize=15&sort=desc&time=".time();
+                            $res=json_decode($this->http_get($url),true);// 调用的笑话结果  并转化为了数组
+							$data = $res["result"]["data"];
+							$content = "";
+							foreach($data as $k=>$v){
+							
+							   $content.=$v["content"]."\r\n";
+							
+							}
+							echo $content;
+
+
+        exit;
+
 	   $a="<xml><ToUserName><![CDATA[gh_2bdc7cc9336f]]></ToUserName>
             <FromUserName><![CDATA[oM539vl7WgtGfPqbW3nYOTTT6HNQ]]></FromUserName>
             <CreateTime>1604919519</CreateTime>

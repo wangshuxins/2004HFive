@@ -27,4 +27,7 @@ Route::post("/dologin","Login\LoginController@dologin");
 Route::get("/index","Index\IndexController@index");
 Route::any("/test","Test\TestController@test");
 Route::any("/list","Test\TestController@list")->MIddleware("wetchlogin");
+Route::get("/admins","Admin\AdminController@admins");
+Route::get("/menu","Admin\AdminController@menu");
+Route::get("/menu/list","Admin\AdminController@list");
 

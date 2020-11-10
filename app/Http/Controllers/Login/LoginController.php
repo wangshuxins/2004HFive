@@ -11,13 +11,11 @@ class LoginController extends Controller
     public function login(){
          $cookie_login = Request()->cookie('rember');
 		 if($cookie_login){
-                  return redirect("/list");
+                  return redirect("/admins");
             }else{
                   return view("wetch.login.login");
 		
             }
-		    
-        	
 	}
 	public function dologin(){
 	

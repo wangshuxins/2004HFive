@@ -51,4 +51,17 @@ use GuzzleHttp\Client;
 		echo $json_str;
 	  }
 
+	  function client_menu($menu){
+	     
+		  $client = new Client();
+		  $response = $client->request('POST',$url,[
+
+			  'verify' => false,
+			  'body'=> json_encode($menu)
+			  
+		  ]);
+		  $data = $response->getBody();
+		  echo $data;
+	  }
+
 	

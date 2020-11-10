@@ -79,7 +79,7 @@ $(document).on("click","#button",function(){
 		success:function(res){
 			if(res.error_no=='0'){
 				alert(res.error_msg);
-			    location.href="{{url('/list')}}";
+			    location.href="{{url('/admins')}}";
 			}else if(res.error_no=='1'){
 			   $("#b").text(res.error_msg);
 		   }
