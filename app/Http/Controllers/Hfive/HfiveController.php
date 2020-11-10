@@ -77,7 +77,7 @@ class HfiveController extends Controller
                         User::where("openid",$user['openid'])->update(['subscribe'=>0]);
                         $content = "取消关注成功,期待您下次关注";
                     }
-					 if ($obj->Event == "click") {
+					 if ($obj->Event == "CLICK") {
                        
                         $content = "天气";
                     }
