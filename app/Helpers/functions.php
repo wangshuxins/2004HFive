@@ -46,7 +46,7 @@ use GuzzleHttp\Client;
 	  }
 	  function clent_get($url){
 	    $client = new Client();
-        $response = $client->request("GET",$url);
+        $response = $client->request("GET",$url,['verify' => false]);
 		$json_str = $response->getBody();
 		echo $json_str;
 	  }

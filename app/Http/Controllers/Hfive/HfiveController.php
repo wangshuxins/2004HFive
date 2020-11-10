@@ -15,21 +15,6 @@ class HfiveController extends Controller
          
             $obj = simplexml_load_string($str, "SimpleXMLElement", LIBXML_NOCDATA);
 
-			$data = [
-		      "tousername"=>$obj->ToUserName,  
-		      "fromusername"=>$obj->FromUserName,
-			  "msgtype"=>$obj->MsgType,
-			  "content"=>$obj->Content,
-			  "msgid" =>$obj->MsgId,
-		      "createtime"=>$obj->CreateTime,
-		      "mediaid"=>$obj->MediaId,
-			  "format"=>$obj->Format,
-			  "recognition"=>$obj->Recognition,
-		      "picurl"=>$obj->PicUrl,
-			  "event"=>$obj->Event,
-			  "eventkey"=>$obj->EventKey
-	        ];
-            PWxMedia::insert($data);
             switch ($obj->MsgType) {
                 case 'event':
                     if ($obj->Event == "subscribe") {
@@ -222,6 +207,21 @@ class HfiveController extends Controller
 				break;
 				case "image":
 				    file_put_contents("ddd.txt",$str);
+				    			$data = [
+		                              "tousername"=>$obj->ToUserName,  
+									  "fromusername"=>$obj->FromUserName,
+									  "msgtype"=>$obj->MsgType,
+									  "content"=>$obj->Content,
+									  "msgid" =>$obj->MsgId,
+									  "createtime"=>$obj->CreateTime,
+									  "mediaid"=>$obj->MediaId,
+									  "format"=>$obj->Format,
+									  "recognition"=>$obj->Recognition,
+									  "picurl"=>$obj->PicUrl,
+									  "event"=>$obj->Event,
+									  "eventkey"=>$obj->EventKey
+	                              ];
+                    PWxMedia::insert($data);
 				    $content ="此功能暂时还未开放，您可以发消息与图灵机器人'小柯'进行交流或者输入'天气'查询某地区的天气状况，更多功能正在火速进行中，尽请期待。。。";
 				break;
             }

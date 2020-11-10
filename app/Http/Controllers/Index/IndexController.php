@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Index;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
@@ -12,6 +11,14 @@ use App\Model\PWxMedia;
 class IndexController extends HfiveController
 {
    public function index(){ 
+   $pw = PWxMedia::select("mediaid")->where("msgtype","image")->get()->toArray();  
+   $access_token = $this->assecc_token();
+   foreach($pw as $k=>$v){
+	    $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$access_token."&media_id=".$v['mediaid'];
+		dump($url);
+   }
+  
+ exit;
   /*
     $ip="192.168.162.1";
         $durl = 'http://ip.taobao.com/service/getIpInfo.php?ip='.$ip;
