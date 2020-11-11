@@ -271,6 +271,8 @@ class HfiveController extends Controller
 				    $content ="此功能暂时还未开放，您可以发消息与图灵机器人'小柯'进行交流或者输入'天气'查询某地区的天气状况，更多功能正在火速进行中，尽请期待。。。";
 
 				break;
+				default:
+                 $content="表达式的值不等于 label1 及 label2 时执行的代码";
             }
             
             echo $this->xiaoxi($obj, $content);
