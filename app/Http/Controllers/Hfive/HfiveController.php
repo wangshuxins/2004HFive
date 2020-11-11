@@ -82,11 +82,13 @@ class HfiveController extends Controller
 					 if ($obj->Event == "CLICK") {
 
 						 if($obj->EventKey=="wx_521"){
-                             $key = $obj->FromUserName;
+                              $key = $obj->FromUserName;
 							  $zincrby = Redis::zincrby($key,1,1);
 							  $zadd = Redis::zadd($key,$zincrby,1);
-						     
-						    $content="签到成功您以积累签到".$zincrby."天";
+							  if($zadd){
+								  Redis::set($key."s",$key);
+							  }
+						      $content="签到成功您以积累签到".$zincrby."天";
 						 }else{
 						 
 						    $city =  urlencode("北京");
