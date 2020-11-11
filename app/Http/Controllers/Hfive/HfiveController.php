@@ -88,15 +88,15 @@ class HfiveController extends Controller
 							  if($date){
 							      $date = $date[0];
 							  }
-							  $zcard = Redis::zcard($key);
-									 if($zcard>=1){
-										 Redis::zremrangebyrank($key,0,0);
-									}
+							  
 						       if($date==$times){
 								     
 									 $content = "您今日已经签到过了!";
 								 }else{
-									
+									 $zcard = Redis::zcard($key);
+									 if($zcard>=1){
+										 Redis::zremrangebyrank($key,0,0);
+									}
 									 $incr=Redis::incr(1);
 									 $zincrby = Redis::zincrby($key,$incr,$times);
 							         $zadd = Redis::zadd($key,$zincrby,$times);
