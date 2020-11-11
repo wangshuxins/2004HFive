@@ -98,7 +98,7 @@ class HfiveController extends Controller
 										 Redis::zremrangebyrank($key,0,0);
 									}
 									 
-									 $zincrby = Redis::zincrby($key,1,$times);
+									 $zincrby = Redis::zincrby($key,redis::incr(1),$times);
 							         $zadd = Redis::zadd($key,$zincrby,$times);
 					            	 $content="签到成功您以积累签到".$zincrby."天!";  
 							   }
