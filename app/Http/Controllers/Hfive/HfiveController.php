@@ -85,6 +85,11 @@ class HfiveController extends Controller
 					
 					   $content = "";
 					}
+					if($obj->Event == "pic_weixin"){
+					
+					   $content = "";
+					}
+					
 					 if ($obj->Event == "CLICK") {
 
 						 if($obj->EventKey=="wx_521"){
