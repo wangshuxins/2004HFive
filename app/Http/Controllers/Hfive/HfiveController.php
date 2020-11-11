@@ -81,9 +81,7 @@ class HfiveController extends Controller
                     }
 					 if ($obj->Event == "CLICK") {
 
-
-
-                       
+					   file_get_contents("ddd.txt",$str);
                        $city =  urlencode("北京");
                             $key = "2f3d1615c28f0a5bc54da5082c4c1c0c";
                             $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;

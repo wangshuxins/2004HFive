@@ -11,14 +11,14 @@ use App\Model\PWxMedia;
 class IndexController extends HfiveController
 {
    public function index(){ 
-   $pw = PWxMedia::select("mediaid")->where("msgtype","image")->get()->toArray();  
-   $access_token = $this->assecc_token();
-   foreach($pw as $k=>$v){
-	    $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$access_token."&media_id=".$v['mediaid'];
-		dump($url);
-   }
+   //$pw = PWxMedia::select("mediaid")->where("msgtype","image")->get()->toArray();  
+   //$access_token = $this->assecc_token();
+   //foreach($pw as $k=>$v){
+   //	    $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$access_token."&media_id=".$v['mediaid'];
+   //		dump($url);
+   //}
   
- exit;
+ //exit;
   /*
     $ip="192.168.162.1";
         $durl = 'http://ip.taobao.com/service/getIpInfo.php?ip='.$ip;
@@ -81,6 +81,14 @@ exit;
       [
            "name"=>"菜单",
            "sub_button"=>[
+
+
+            [   
+              "type"=>"click",
+              "name"=>"签到",
+              "key"=>"wx_521"
+           ],
+
            [	
                "type"=>"view",
                "name"=>"搜索",
