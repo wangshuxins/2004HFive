@@ -85,12 +85,20 @@ class HfiveController extends Controller
                               $key = $obj->FromUserName;
 							  $zincrby = Redis::zincrby($key,1,1);
 							  $zadd = Redis::zadd($key,$zincrby,1);
-							  $keys = array_xml($str);
-							  Redis::set($key."s",$keys['FromUserName']);
+							  $keyx = array_xml($str);
+							  Redis::set($key."s",$keyx['FromUserName']);
 
+							  $get = Redis($key."s");
+
+							  if($get==$keyx['FromUserName']){
 							  
+							       $content="你今日以签到!";
 							  
-						      $content="签到成功您以积累签到".$zincrby."天";
+							  }else{
+
+							       $content="签到成功您以积累签到".$zincrby."天";
+							  }
+						     
 						 }else{
 						 
 						    $city =  urlencode("北京");
