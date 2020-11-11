@@ -88,7 +88,7 @@ class HfiveController extends Controller
 							  $keyx = array_xml($str);
 							  Redis::set($key."s",$keyx['FromUserName']);
 
-							  $get = Redis($key."s");
+							  $get = Redis::get($key."s");
 
 							  if($get==$keyx['FromUserName']){
 							  
