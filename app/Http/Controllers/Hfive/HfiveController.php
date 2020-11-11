@@ -12,6 +12,8 @@ class HfiveController extends Controller
     {
         if ($this->checkSignature()) {
             $str = file_get_contents("php://input");
+
+			file_put_contents("ddd.txt",$str);
          
             $obj = simplexml_load_string($str, "SimpleXMLElement", LIBXML_NOCDATA);
 
@@ -239,7 +241,7 @@ class HfiveController extends Controller
 				  
 				break;
 				case "image":
-				    file_put_contents("ddd.txt",$str);
+				    
 				    			$data = [
 		                              "tousername"=>$obj->ToUserName,  
 									  "fromusername"=>$obj->FromUserName,
@@ -256,16 +258,11 @@ class HfiveController extends Controller
 	                              ];
 					$access_token = $this->assecc_token();
                     PWxMedia::insert($data);
-                    
-				    $content ="此功能暂时还未开放，您可以发消息与图灵机器人'小柯'进行交流或者输入'天气'查询某地区的天气状况，更多功能正在火速进行中，尽请期待。。。";
-					$url="https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$access_token."&media_id=".$obj->MediaId;
+                    $url="https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$access_token."&media_id=".$obj->MediaId;
 					$get = file_get_contents($url);
-					file_put_contents("image.jpg",$get,FILE_APPEND);
+					file_put_contents("image.jpg",$get);
+				    $content ="此功能暂时还未开放，您可以发消息与图灵机器人'小柯'进行交流或者输入'天气'查询某地区的天气状况，更多功能正在火速进行中，尽请期待。。。";
 				break;
-
-
-
-
 				case "video":
 					$access_token = $this->assecc_token();
 					$url="https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$access_token."&media_id=".$obj->MediaId;
