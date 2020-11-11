@@ -252,6 +252,13 @@ class HfiveController extends Controller
 					file_put_contents("image.jpg",$get);
 				    $content ="此功能暂时还未开放，您可以发消息与图灵机器人'小柯'进行交流或者输入'天气'查询某地区的天气状况，更多功能正在火速进行中，尽请期待。。。";
 				break;
+				case "video":
+					$url="https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$access_token."&media_id=".$obj->MediaId;
+					$get = file_get_contents($url);
+					file_put_contents("video.mp4",$get);
+				    $content ="此功能暂时还未开放，您可以发消息与图灵机器人'小柯'进行交流或者输入'天气'查询某地区的天气状况，更多功能正在火速进行中，尽请期待。。。";
+
+				break;
             }
             
             echo $this->xiaoxi($obj, $content);
