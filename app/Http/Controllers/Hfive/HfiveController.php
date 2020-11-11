@@ -239,7 +239,7 @@ class HfiveController extends Controller
 				  
 				break;
 				case "image":
-				    //file_put_contents("ddd.txt",$str);
+				    file_put_contents("ddd.txt",$str);
 				    			$data = [
 		                              "tousername"=>$obj->ToUserName,  
 									  "fromusername"=>$obj->FromUserName,
