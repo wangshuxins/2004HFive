@@ -13,12 +13,16 @@ class IndexController extends HfiveController
    public function index(){ 
 
 
-	                           $key = "123456";
-							   
-							   
-							 
-						     
-						    echo "签到成功您以积累签到".$zincrby."天";
+	                          $a = "<xml><ToUserName><![CDATA[gh_2bdc7cc9336f]]></ToUserName>
+<FromUserName><![CDATA[oM539vl7WgtGfPqbW3nYOTTT6HNQ]]></FromUserName>
+<CreateTime>1604991376</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[CLICK]]></Event>
+<EventKey><![CDATA[wx_520]]></EventKey>
+</xml>";
+
+$a = array_xml($a);
+dd($a['FromUserName']);
 							exit;
    //$pw = PWxMedia::select("mediaid")->where("msgtype","image")->get()->toArray();  
    //$access_token = $this->assecc_token();
