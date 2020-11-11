@@ -13,8 +13,9 @@ class IndexController extends HfiveController
    public function index(){ 
 
 
-	                           $key = "1234";
-							
+	                           $key = "123456";
+							   
+							   
 							 
 						     
 						    echo "签到成功您以积累签到".$zincrby."天";
