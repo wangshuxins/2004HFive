@@ -104,21 +104,21 @@ class HfiveController extends Controller
 							      $date = $date[0];
 							  }
 							  
-						       if($date==$times){
-								     
+						       if($date==$times){   
 									 $content = "您今日已经签到过了!";
 								 }else{
 									 $zcard = Redis::zcard($key);
 									 if($zcard>=1){
 										 Redis::zremrangebyrank($key,0,0);
 									}
-
-									 
 									 $keys = array_xml($str);
                                      $keys = $keys['FromUserName'];
 									 $zincrby = Redis::zincrby($key,1,$keys);
 							         $zadd = Redis::zadd($key,$zincrby,$times);
-					            	 $content="签到成功您以积累签到".$zincrby."天!";  
+									 $incrby = Redis::incrby($key."_score");
+									 
+
+					            	 $content="签到成功您以积累签到".$zincrby."天!"."以积累获取".$incrby."积分";  
 							   }
 						 }else{
 						 
