@@ -86,7 +86,7 @@ class HfiveController extends Controller
 							  $times = date("Y-m-d",time());
                               $date = Redis::zrange($key,0,-1);
 							
-						       if("2020-11-11"==$times){	
+						       if($date=="2020-11-11"){	
 									 $content = "您今日以及签到过了!";
 								 }else{
 									 $zincrby = Redis::zincrby($key,1,$times);
