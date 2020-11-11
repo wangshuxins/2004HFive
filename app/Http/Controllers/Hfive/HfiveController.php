@@ -121,7 +121,6 @@ class HfiveController extends Controller
                     }
                     break;
                     case 'text':
-						if($obj->Event == "text"){
                         if ($obj->Content == "天气") {
                             $content = "您好,请输入您想查询的您的地区的天气，比如:'北京'";
                         }else{
@@ -183,11 +182,9 @@ class HfiveController extends Controller
 
                             }
                         }
-					}
                     break;
 					case "voice":
-					//file_put_contents("ddd.txt",$str);
-                    if($obj->Event == "voice"){
+					file_put_contents("ddd.txt",$str);
 					  $apiKey="3537d051f0ec483e86f81fbc8689ec9d";
 	                  $perception = $obj->Recognition;
 		              $url = "http://openapi.tuling123.com/openapi/api/v2";
@@ -207,10 +204,8 @@ class HfiveController extends Controller
 								$datas = json_decode($this->curl($url,$data),true);
 								$content = $datas['results'][0]['values']['text'];
                                 $content = $content;
-				    }
 				break;
 				case "image":
-					if($obj->Event == "image"){
 				    file_put_contents("ddd.txt",$str);
 				    			$data = [
 		                              "tousername"=>$obj->ToUserName,  
@@ -229,8 +224,7 @@ class HfiveController extends Controller
                     PWxMedia::insert($data);
 				    $content ="此功能暂时还未开放，您可以发消息与图灵机器人'小柯'进行交流或者输入'天气'查询某地区的天气状况，更多功能正在火速进行中，尽请期待。。。";
 				break;
-              }
-			}
+            }
             
             echo $this->xiaoxi($obj, $content);
         }
