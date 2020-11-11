@@ -83,16 +83,16 @@ class HfiveController extends Controller
 
 						 if($obj->EventKey=="wx_521"){
                               $key = $obj->FromUserName;
-							  $times = "2020-11-15";
+							  $times = "2020-11-11";
                               $date = Redis::zrange($key,0,-1);
 							  if($date){
 							      $date = $date[0];
 							  }
 						       if($date==$times){	
-									 $content = "您今日以及签到过了!";
+									 $content = "您今日已经签到过了!";
 								 }else{
 									 $zcard = Redis::zcard($key);
-									 if($zcard==2){
+									 if($zcard<=2){
 										 Redis::zremrangebyrank($key,0,0);
 									 }
 									 $incr=Redis::incr(1);
