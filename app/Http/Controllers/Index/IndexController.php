@@ -12,6 +12,7 @@ class IndexController extends HfiveController
 {
 
    public function index(){ 
+/*
 $key ="oM539vl7WgtGfPqbW3nYOTTT6HNQ";
 $date = Redis::zrange($key,0,-1);
 
@@ -42,14 +43,18 @@ dd($key[0]);
 $a = array_xml($a);
 dd($a['FromUserName']);
 							exit;
-   //$pw = PWxMedia::select("mediaid")->where("msgtype","image")->get()->toArray();  
-   //$access_token = $this->assecc_token();
+*/
+   $pw = PWxMedia::select("mediaid")->where("msgtype","image")->get()->toArray();  
+   $access_token = $this->assecc_token();
    //foreach($pw as $k=>$v){
    //	    $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$access_token."&media_id=".$v['mediaid'];
-   //		dump($url);
+    //    dd($url);
    //}
+
+   $get = file_get_contents("https://api.weixin.qq.com/cgi-bin/media/get?access_token=39_l0D7jECQkmQVAGdqeuIJQH5prPcK4AvOLYDEetADShrtrtz5u8MvMZL9b2M6xSGmKO0wtZTFDROsm4Uh1thdUV2JAvcikxVho6Mvi8QnFfemrxfeX5OlV3K5cHwypWBLH28aLhx9gPlfMClYXNPaAJADTV&media_id=mqvd8rLMiBH7rPXav9nSM78wTvSRkF3I12W4gwEmrX6ErllGDjF3oqUAx_C6_Ywy");
+   file_put_contents("aaa.jpg",$get);
   
- //exit;
+ exit;
   /*
     $ip="192.168.162.1";
         $durl = 'http://ip.taobao.com/service/getIpInfo.php?ip='.$ip;
