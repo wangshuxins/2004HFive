@@ -87,7 +87,7 @@ class HfiveController extends Controller
 							  $zincrby = Redis::zincrby($key,1,$times);
 							  $zadd = Redis::zadd($key,$zincrby,$times);
 							  Redis::set($key."s",time());
-							  $get = Redis($key."s");
+							  $get = Redis::get($key."s");
                               $time = date("H",time());
 							  if(date("H",$get)==24){
 							       $content = "没过时间";
