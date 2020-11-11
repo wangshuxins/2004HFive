@@ -83,7 +83,7 @@ class HfiveController extends Controller
 
 						 if($obj->EventKey=="wx_521"){
                               $key = $obj->FromUserName;
-							  $times = date("Y-m-d",time());
+							  $times = "2020-11-12";
                               $date = Redis::zrange($key,0,-1);
 							  if($date){
 							      $date = $date[0];
