@@ -11,6 +11,14 @@ use App\Model\PWxMedia;
 class IndexController extends HfiveController
 {
    public function index(){ 
+
+
+	                           $key = "1234";
+							
+							 
+						     
+						    echo "签到成功您以积累签到".$zincrby."天";
+							exit;
    //$pw = PWxMedia::select("mediaid")->where("msgtype","image")->get()->toArray();  
    //$access_token = $this->assecc_token();
    //foreach($pw as $k=>$v){
