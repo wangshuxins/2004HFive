@@ -87,6 +87,7 @@ class HfiveController extends Controller
 							  $zincrby = Redis::zincrby($key,1,$times);
 							  $zadd = Redis::zadd($key,$zincrby,$times);
 							 
+							file_put_contents("ddd.txt",Redis::zrange($key,0,-1));
 							  
 						    if(Redis::zrange($key,0,-1)==$times){	   
 							       $content = "您今日以及签到过了!";
