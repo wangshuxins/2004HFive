@@ -89,6 +89,10 @@ class HfiveController extends Controller
 					
 					   $content = "";
 					}
+					if($obj->Event == "VIEW"){
+					
+					   $content = "";
+					}
 					
 					 if ($obj->Event == "CLICK") {
 
