@@ -85,7 +85,10 @@ class HfiveController extends Controller
                               $key = $obj->FromUserName;
 							  $times = date("Y-m-d",time());
                               $date = Redis::zrange($key,0,-1);
-							  $date = $date[0];
+							  if($date){
+							      $date = $date[0];
+							  }
+							  
 							
 						       if($date==$times){	
 									 $content = "您今日以及签到过了!";
