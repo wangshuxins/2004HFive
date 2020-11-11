@@ -84,6 +84,8 @@ class HfiveController extends Controller
 						 if($obj->EventKey=="wx_521"){
                               $key = $obj->FromUserName;
 							  $times = date("Y-m-d",time());
+                              file_put_contents("eee.txt",$times);
+
 							  $zincrby = Redis::zincrby($key,1,$times);
 							  $zadd = Redis::zadd($key,$zincrby,$times);
 							 
