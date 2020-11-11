@@ -90,7 +90,7 @@ class HfiveController extends Controller
 							  $zadd = Redis::zadd($key,$zincrby,$times);
 							 
 							
-						    if(Redis::zrange($key,0,-1)=$times){	   
+						    if(Redis::zrange($key,0,-1)=="2020-11-11"){	   
 							       $content = "您今日以及签到过了!";
 								 }else{
 							       $content="签到成功您以积累签到".$zincrby."天";
