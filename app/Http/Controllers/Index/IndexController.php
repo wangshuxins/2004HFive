@@ -10,7 +10,12 @@ use GuzzleHttp\Client;
 use App\Model\PWxMedia;
 class IndexController extends HfiveController
 {
+
    public function index(){ 
+$key ="laravel_database_oM539vl7WgtGfPqbW3nYOTTT6HNQ";
+$date = Redis::zrange($key,0,-1);
+
+dd($date);
 
     $a = "1605076258";
 
