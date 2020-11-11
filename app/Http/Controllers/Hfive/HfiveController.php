@@ -91,7 +91,8 @@ class HfiveController extends Controller
 						       if($date==$times){	
 									 $content = "您今日以及签到过了!";
 								 }else{
-									 $zincrby = Redis::zincrby($key,1,$times);
+									 $incr=Redis::incr(1);
+									 $zincrby = Redis::zincrby($key,$incr,$times);
 							         $zadd = Redis::zadd($key,$zincrby,$times);
 					            	 $content="签到成功您以积累签到".$zincrby."天!";  
 							   }
