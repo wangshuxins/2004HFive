@@ -88,8 +88,6 @@ class HfiveController extends Controller
 							  if($date){
 							      $date = $date[0];
 							  }
-							  
-							
 						       if($date==$times){	
 									 $content = "您今日以及签到过了!";
 								 }else{
@@ -174,7 +172,7 @@ class HfiveController extends Controller
                                     "\r\n"."温度:".$user['result']['future'][4]['temperature'].
                                     "\r\n"."风向:".$user['result']['future'][4]['direct'];
                             }else{
-                                file_put_contents("ddd.txt",$str);
+                               
                                 $apiKey="3537d051f0ec483e86f81fbc8689ec9d";
                                 $perception = $obj->Content;
                                 $url = "http://openapi.tuling123.com/openapi/api/v2";
@@ -200,7 +198,7 @@ class HfiveController extends Controller
                         }
                     break;
 					case "voice":
-					file_put_contents("ddd.txt",$str);
+					
 					  $apiKey="3537d051f0ec483e86f81fbc8689ec9d";
 	                  $perception = $obj->Recognition;
 		              $url = "http://openapi.tuling123.com/openapi/api/v2";
