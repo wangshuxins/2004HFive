@@ -89,7 +89,7 @@ class HfiveController extends Controller
 							      $date = $date[0];
 							  }
 							  $zcard = Redis::zcard($key);
-									 if($zcard>=2){
+									 if($zcard>=1){
 										 Redis::zremrangebyrank($key,0,0);
 									}
 						       if($date==$times){
