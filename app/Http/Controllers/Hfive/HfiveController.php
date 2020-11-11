@@ -83,7 +83,7 @@ class HfiveController extends Controller
 
 						 if($obj->EventKey=="wx_521"){
 						 
-						    $content="签到成功";
+						    $content="签到成功";exit;
 						 }
 
 					   file_put_contents("ddd.txt",$str);
