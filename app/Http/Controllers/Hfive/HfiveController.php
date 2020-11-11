@@ -83,11 +83,10 @@ class HfiveController extends Controller
 
 						 if($obj->EventKey=="wx_521"){
 						 
-						    $content="签到成功";exit;
-						 }
-
-					   file_put_contents("ddd.txt",$str);
-                       $city =  urlencode("北京");
+						    $content="签到成功";
+						 }else{
+						 
+						    $city =  urlencode("北京");
                             $key = "2f3d1615c28f0a5bc54da5082c4c1c0c";
                             $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;
                             $user = json_decode($this->http_get($url), true);//跳方法 用get  方式调第三方类库
@@ -120,7 +119,8 @@ class HfiveController extends Controller
                                     "\r\n"."天气:".$user['result']['future'][4]['weather'].
                                     "\r\n"."温度:".$user['result']['future'][4]['temperature'].
                                     "\r\n"."风向:".$user['result']['future'][4]['direct'];
-                         }
+                         } 
+					  }
                     }
                     break;
                     case 'text':
