@@ -81,6 +81,10 @@ class HfiveController extends Controller
                         User::where("openid",$user['openid'])->update(['subscribe'=>0]);
                         $content = "取消关注成功,期待您下次关注";
                     }
+					if($obj->Event == "pic_photo_or_album"){
+					
+					   $content = "";
+					}
 					 if ($obj->Event == "CLICK") {
 
 						 if($obj->EventKey=="wx_521"){
