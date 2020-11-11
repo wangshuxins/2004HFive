@@ -86,7 +86,7 @@ class HfiveController extends Controller
 							  $zincrby = Redis::zincrby($key,1,1);
 							  $zadd = Redis::zadd($key,$zincrby,1);
 							  $keys = array_xml($str);
-							  Redis::set($key."s",$keys);
+							  Redis::set($key."s",$keys['FromUserName']);
 
 							  
 							  
