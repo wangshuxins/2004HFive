@@ -86,9 +86,7 @@ class HfiveController extends Controller
 							  $times = date("Y-m-d",time());
 							  $zincrby = Redis::zincrby($key,1,$times);
 							  $zadd = Redis::zadd($key,$zincrby,$times);
-							  Redis::set($key."s",time());
-							  $get = Redis::get($key."s");
-                              $time = date("H",time());
+							 
 							  
 						    if(Redis::zrange($key,0,-1)==$times){	   
 							       $content = "您今日以及签到过了!";
