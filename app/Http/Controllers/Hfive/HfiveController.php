@@ -81,6 +81,11 @@ class HfiveController extends Controller
                     }
 					 if ($obj->Event == "CLICK") {
 
+						 if($obj->EventKey=="wx_521"){
+						 
+						    $content="签到成功";
+						 }
+
 					   file_put_contents("ddd.txt",$str);
                        $city =  urlencode("北京");
                             $key = "2f3d1615c28f0a5bc54da5082c4c1c0c";
