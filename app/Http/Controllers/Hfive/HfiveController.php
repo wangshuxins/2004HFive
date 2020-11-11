@@ -83,7 +83,7 @@ class HfiveController extends Controller
 
 						 if($obj->EventKey=="wx_521"){
                              $key = $obj->FromUserName;
-							 $zadd = Redis::zadd($openid,0,1);
+							 $zadd = Redis::zadd($key,0,1);
 							 if($zadd){
 							    $zincrby = Redis::zincrby($key,1,1);
 							 }
