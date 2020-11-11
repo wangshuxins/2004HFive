@@ -89,14 +89,15 @@ class HfiveController extends Controller
 							  Redis::set($key."s",time());
 							  $get = Redis::get($key."s");
                               $time = date("H",time());
-							  if(date("H",$get)==24){
-							       $content = "没过时间";
-							  }else{
 							  
-							       $content = "过去时间";
-							  }
+						    if(Redis::zrange($key,0,-1)==$times){	   
+							       $content = "您今日以及签到过了!";
+								 }else{
+							       $content="签到成功您以积累签到".$zincrby."天";
+							}
 							  
-						      //$content="签到成功您以积累签到".$zincrby."天";
+							  
+		
 						 }else{
 						 
 						    $city =  urlencode("北京");
