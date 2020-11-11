@@ -13,13 +13,18 @@ class IndexController extends HfiveController
    public function index(){ 
 
 
-	                          $a = "<xml><ToUserName><![CDATA[gh_2bdc7cc9336f]]></ToUserName>
+	        $a = "<xml><ToUserName><![CDATA[gh_2bdc7cc9336f]]></ToUserName>
 <FromUserName><![CDATA[oM539vl7WgtGfPqbW3nYOTTT6HNQ]]></FromUserName>
 <CreateTime>1604991376</CreateTime>
 <MsgType><![CDATA[event]]></MsgType>
 <Event><![CDATA[CLICK]]></Event>
 <EventKey><![CDATA[wx_520]]></EventKey>
 </xml>";
+ $obj = simplexml_load_string($a, "SimpleXMLElement", LIBXML_NOCDATA);
+$key = $obj->FromUserName;
+json_de
+dd($key[0]);
+
 
 $a = array_xml($a);
 dd($a['FromUserName']);
