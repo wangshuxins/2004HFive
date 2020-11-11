@@ -83,7 +83,7 @@ class HfiveController extends Controller
 
 						 if($obj->EventKey=="wx_521"){
                               $key = $obj->FromUserName;
-							  $times = "2020-11-13";
+							  $times = date("Y-m-d",time());
                               $date = Redis::zrange($key,0,-1);
 							  if($date){
 							      $date = $date[0];
@@ -98,8 +98,8 @@ class HfiveController extends Controller
 										 Redis::zremrangebyrank($key,0,0);
 									}
 									 
-									 $zincrby = Redis::zincrby($key,Redis::incr($zcard),$times);
-							         $zadd = Redis::zadd($key,$zincrby,$times);
+									 //$zincrby = Redis::zincrby($key,1,$times);
+							         $zadd = Redis::zadd($key,Redis::incr(1),$times);
 					            	 $content="签到成功您以积累签到".$zincrby."天!";  
 							   }
 						 }else{
