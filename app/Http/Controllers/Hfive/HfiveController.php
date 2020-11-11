@@ -99,8 +99,8 @@ class HfiveController extends Controller
 									}
 
 									 
-									 $keys=$key=0;
-									 $zincrby = Redis::zincrby($key,$keys,$times);
+									 
+									 $zincrby = Redis::zincrby($key,1,$key);
 							         $zadd = Redis::zadd($key,$zincrby,$times);
 					            	 $content="签到成功您以积累签到".$zincrby."天!";  
 							   }
