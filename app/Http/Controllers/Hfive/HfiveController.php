@@ -84,14 +84,13 @@ class HfiveController extends Controller
 						 if($obj->EventKey=="wx_521"){
                               $key = $obj->FromUserName;
 							  $times = date("Y-m-d",time());
-                              file_put_contents("eee.txt",$times);
+                             
 
 							  $zincrby = Redis::zincrby($key,1,$times);
 							  $zadd = Redis::zadd($key,$zincrby,$times);
 							 
-							file_put_contents("ddd.txt",Redis::zrange($key,0,-1));
-							  
-						    if(Redis::zrange($key,0,-1)==$times){	   
+							
+						    if(Redis::zrange($key,0,-1)=$times){	   
 							       $content = "您今日以及签到过了!";
 								 }else{
 							       $content="签到成功您以积累签到".$zincrby."天";
