@@ -12,6 +12,14 @@ class IndexController extends HfiveController
 {
    public function index(){ 
 
+    $a = "1605076258";
+
+    $a = date("H",$a);
+
+    dd($a);
+
+	exit;
+
 
 	        $a = "<xml><ToUserName><![CDATA[gh_2bdc7cc9336f]]></ToUserName>
 <FromUserName><![CDATA[oM539vl7WgtGfPqbW3nYOTTT6HNQ]]></FromUserName>
@@ -22,7 +30,7 @@ class IndexController extends HfiveController
 </xml>";
  $obj = simplexml_load_string($a, "SimpleXMLElement", LIBXML_NOCDATA);
 $key = $obj->FromUserName;
-json_de
+
 dd($key[0]);
 
 

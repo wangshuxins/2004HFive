@@ -83,12 +83,20 @@ class HfiveController extends Controller
 
 						 if($obj->EventKey=="wx_521"){
                               $key = $obj->FromUserName;
-							  $zincrby = Redis::zincrby($key,1,1);
-							  $zadd = Redis::zadd($key,$zincrby,1);
-						
-							     Redis::set($key."s",time());
+							  $times = date("Y-m-d",time());
+							  $zincrby = Redis::zincrby($key,1,$times);
+							  $zadd = Redis::zadd($key,$zincrby,$times);
+							  Redis::set($key."s",time());
+							  $get = Redis($key."s");
+                              $time = date("H",time());
+							  if(date("H",$get)==24){
+							       $content = "没过时间";
+							  }else{
 							  
-						      $content="签到成功您以积累签到".$zincrby."天";
+							       $content = "过去时间";
+							  }
+							  
+						      //$content="签到成功您以积累签到".$zincrby."天";
 						 }else{
 						 
 						    $city =  urlencode("北京");
