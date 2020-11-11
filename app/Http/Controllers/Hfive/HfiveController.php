@@ -118,9 +118,7 @@ class HfiveController extends Controller
                                      $keys = $keys['FromUserName'];
 									 $zincrby = Redis::zincrby($key,1,$keys);
 							         $zadd = Redis::zadd($key,$zincrby,$times);
-									 Redis::set($keys."_score",Redis::incrby(100));
-									 $score = Redis::get($keys."_score");
-					            	 $content="签到成功您以积累签到".$zincrby."天!"."共积累获得".$score."积分!";  
+					            	 $content="签到成功您以积累签到".$zincrby."天!";  
 							   }
 						 }else{
 						 
