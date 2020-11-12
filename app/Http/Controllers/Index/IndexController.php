@@ -12,6 +12,11 @@ class IndexController extends HfiveController
 {
 
    public function index(){ 
+
+
+	   $incrby = Redis::incrby("234",100);
+	   dd($incrby);
+	   exit;
 /*
 $key ="oM539vl7WgtGfPqbW3nYOTTT6HNQ";
 $date = Redis::zrange($key,0,-1);
@@ -44,6 +49,7 @@ $a = array_xml($a);
 dd($a['FromUserName']);
 							exit;
 */
+/*
    $pw = PWxMedia::select("mediaid")->where("msgtype","image")->get()->toArray();  
    $access_token = $this->assecc_token();
    //foreach($pw as $k=>$v){
@@ -55,6 +61,7 @@ dd($a['FromUserName']);
    file_put_contents("aaa.jpg",$get);
   
  exit;
+ */
   /*
     $ip="192.168.162.1";
         $durl = 'http://ip.taobao.com/service/getIpInfo.php?ip='.$ip;
