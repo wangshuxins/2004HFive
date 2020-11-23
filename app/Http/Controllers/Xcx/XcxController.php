@@ -101,6 +101,7 @@ class XcxController extends Controller
 					$arr[]=$a;
 				}
 			}
+			
        
         //$key = "goods_".$page;
         //$goods = Redis::get($key);
@@ -111,7 +112,8 @@ class XcxController extends Controller
                 ->leftjoin("shop_brand", "shop_goods.brand_id", "=", "shop_brand.brand_id")
                 ->orderBy("shop_goods.goods_id","asc")
 				 ->whereIn("cate_id",$arr)
-                ->paginate(5);
+                ->paginate(10);
+			//dd($goods);
         $response=[
             'data'=>[
                'list'=>$goods->items()
