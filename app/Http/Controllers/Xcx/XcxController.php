@@ -102,9 +102,9 @@ class XcxController extends Controller
 				}
 			}
        
-        $key = "goods_".$page;
-        $goods = Redis::get($key);
-        $goods = unserialize($goods);
+        //$key = "goods_".$page;
+        //$goods = Redis::get($key);
+        //$goods = unserialize($goods);
         if(empty($goods)) {
             $goods = Goods::where("shop_goods.is_del", 1)
                 ->select("goods_id", "goods_name", "goods_img", "goods_price", "brand_name","goods_store")
@@ -117,12 +117,12 @@ class XcxController extends Controller
                'list'=>$goods->items()
             ]
         ];
-          $goodsx = serialize($goods);
-           Redis::set($key,$goodsx);
+          //$goodsx = serialize($goods);
+           //Redis::set($key,$goodsx);
        }
 
-       Redis::expire($key,7200);
-       return $goods;
+       //Redis::expire($key,7200);
+       return $response;
     }
     public function detail(){
 		
