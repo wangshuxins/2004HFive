@@ -112,7 +112,7 @@ class XcxController extends Controller
                 ->leftjoin("shop_brand", "shop_goods.brand_id", "=", "shop_brand.brand_id")
                 ->orderBy("shop_goods.goods_id","asc")
 				 ->whereIn("cate_id",$arr)
-                ->paginate(10);
+                ->paginate(5);
 			//dd($goods);
         $response=[
             'data'=>[
