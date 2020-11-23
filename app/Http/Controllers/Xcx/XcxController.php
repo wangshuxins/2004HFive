@@ -87,13 +87,28 @@ class XcxController extends Controller
         return $shopcate;
     }
     public function goods(){
-		$cate_id=request()->cate_id;
 		 if(!request()->get("page")){
             $page = 1;
         }else{
             $page = request()->get("page");
         }
-			$res=ShopCate::select("cate_id")->where("parent_id",$cate_id)->get()->toArray();
+		$cate_id=request()->cate_id;
+		if($cate_id==0){
+		
+		     $goods = Goods::where("shop_goods.is_del", 1)
+                ->select("goods_id", "goods_name", "goods_img", "goods_price", "brand_name","goods_store")
+                ->leftjoin("shop_brand", "shop_goods.brand_id", "=", "shop_brand.brand_id")
+                ->orderBy("shop_goods.goods_id","asc")
+				 ->whereIn("cate_id",$arr)
+                ->paginate(10);
+			//dd($goods);
+				$response=[
+					'data'=>[
+					   'list'=>$goods->items()
+					]
+				];		
+		}else{
+		    $res=ShopCate::select("cate_id")->where("parent_id",$cate_id)->get()->toArray();
 			//dd($res);
 			$arr=[];
 			foreach($res as $k=>$v){
@@ -101,12 +116,6 @@ class XcxController extends Controller
 					$arr[]=$a;
 				}
 			}
-			
-       
-        //$key = "goods_".$page;
-        //$goods = Redis::get($key);
-        //$goods = unserialize($goods);
-        //if(empty($goods)) {
             $goods = Goods::where("shop_goods.is_del", 1)
                 ->select("goods_id", "goods_name", "goods_img", "goods_price", "brand_name","goods_store")
                 ->leftjoin("shop_brand", "shop_goods.brand_id", "=", "shop_brand.brand_id")
@@ -114,16 +123,12 @@ class XcxController extends Controller
 				 ->whereIn("cate_id",$arr)
                 ->paginate(10);
 			//dd($goods);
-        $response=[
-            'data'=>[
-               'list'=>$goods->items()
-            ]
-        ];
-          //$goodsx = serialize($goods);
-           //Redis::set($key,$goodsx);
-       //}
-
-       //Redis::expire($key,7200);
+				$response=[
+					'data'=>[
+					   'list'=>$goods->items()
+					]
+				];
+		} 
        return $response;
     }
     public function detail(){
