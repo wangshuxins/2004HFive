@@ -93,7 +93,7 @@ class XcxController extends Controller
         }else{
             $page = request()->get("page");
         }
-			$res=CategoryModel::select("cate_id")->where("parent_id",$cate_id)->get()->toArray();
+			$res=ShopCate::select("cate_id")->where("parent_id",$cate_id)->get()->toArray();
 			//dd($res);
 			$arr=[];
 			foreach($res as $k=>$v){
