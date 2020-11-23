@@ -87,12 +87,21 @@ class XcxController extends Controller
         return $shopcate;
     }
     public function goods(){
-       // Redis::flushall();exit;
-        if(!request()->get("page")){
+		$cate_id=request()->cate_id;
+		 if(!request()->get("page")){
             $page = 1;
         }else{
             $page = request()->get("page");
         }
+			$res=CategoryModel::select("cate_id")->where("parent_id",$cate_id)->get()->toArray();
+			//dd($res);
+			$arr=[];
+			foreach($res as $k=>$v){
+				foreach($v as $l=>$a){
+					$arr[]=$a;
+				}
+			}
+       
         $key = "goods_".$page;
         $goods = Redis::get($key);
         $goods = unserialize($goods);
@@ -101,6 +110,7 @@ class XcxController extends Controller
                 ->select("goods_id", "goods_name", "goods_img", "goods_price", "brand_name","goods_store")
                 ->leftjoin("shop_brand", "shop_goods.brand_id", "=", "shop_brand.brand_id")
                 ->orderBy("shop_goods.goods_id","asc")
+				 ->whereIn("cate_id",$arr)
                 ->paginate(5);
         $response=[
             'data'=>[
