@@ -87,7 +87,7 @@ class XcxController extends Controller
         return $shopcate;
     }
     public function goods(){
-        Redis::flushall();exit;
+       // Redis::flushall();exit;
         if(!request()->get("page")){
             $page = 1;
         }else{
