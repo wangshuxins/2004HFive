@@ -105,7 +105,7 @@ class XcxController extends Controller
         //$key = "goods_".$page;
         //$goods = Redis::get($key);
         //$goods = unserialize($goods);
-        if(empty($goods)) {
+        //if(empty($goods)) {
             $goods = Goods::where("shop_goods.is_del", 1)
                 ->select("goods_id", "goods_name", "goods_img", "goods_price", "brand_name","goods_store")
                 ->leftjoin("shop_brand", "shop_goods.brand_id", "=", "shop_brand.brand_id")
@@ -119,7 +119,7 @@ class XcxController extends Controller
         ];
           //$goodsx = serialize($goods);
            //Redis::set($key,$goodsx);
-       }
+       //}
 
        //Redis::expire($key,7200);
        return $response;
