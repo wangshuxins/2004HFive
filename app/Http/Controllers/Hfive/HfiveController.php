@@ -312,6 +312,7 @@ class HfiveController extends Controller
     }
   }
     public function assecc_token(){
+	
 	  $key = "AccessToken";
 	  $get = Redis::get($key);
 	  if(!$get){

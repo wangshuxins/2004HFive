@@ -31,3 +31,13 @@ Route::get("/admins","Admin\AdminController@admins");
 Route::get("/menu","Admin\AdminController@menu");
 Route::get("/menu/list","Admin\AdminController@list");
 
+//小程序
+Route::prefix('/xcx')->group(function(){
+    Route::get('/','Xcx\XcxController@xcx');
+    Route::post('/openid','Xcx\XcxController@openid');
+    Route::get("/navigation",'Xcx\XcxController@navigation');
+    Route::get("/cate",'Xcx\XcxController@cate');
+    Route::get("/goods",'Xcx\XcxController@goods');
+    Route::get("/detail",'Xcx\XcxController@detail');
+});
+
