@@ -93,6 +93,7 @@ class XcxController extends Controller
             $page = request()->get("page");
         }
 		$cate_id=request()->cate_id;
+		
 		if($cate_id==0){
 		
 		     $goods = Goods::where("shop_goods.is_del", 1)
@@ -120,8 +121,7 @@ class XcxController extends Controller
                 ->leftjoin("shop_brand", "shop_goods.brand_id", "=", "shop_brand.brand_id")
                 ->orderBy("shop_goods.goods_id","asc")
 				 ->whereIn("cate_id",$arr)
-                ->paginate(10);
-			//dd($goods);
+                ->paginate(5);
 				$response=[
 					'data'=>[
 					   'list'=>$goods->items()
