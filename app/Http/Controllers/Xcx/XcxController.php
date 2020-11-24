@@ -95,19 +95,31 @@ class XcxController extends Controller
 		$cate_id=request()->cate_id;
 		
 		if($cate_id==0){
-		
-		     $goods = Goods::where("shop_goods.is_del", 1)
+
+		    $key = "key_".$page."_".$cate_id;
+
+			$goods = Redis::get($key);
+			$goods = unserialize($goods);
+			if(empty($goods)){
+			   $goods = Goods::where("shop_goods.is_del", 1)
                 ->select("goods_id", "goods_name", "goods_img", "goods_price", "brand_name","goods_store")
                 ->leftjoin("shop_brand", "shop_goods.brand_id", "=", "shop_brand.brand_id")
                 ->orderBy("shop_goods.goods_id","asc")
                 ->paginate(10);
-			//dd($goods);
-				$response=[
+               $goodx = serialize($goods);
+			   Redis::set($key,$goodx);
+			}
+			$response=[
 					'data'=>[
 					   'list'=>$goods->items()
 					]
-				];		
+				];
+		     		
 		}else{
+			$key = "key_".$page."_".$cate_id;
+			$goods = Redis::get($key);
+			$goods = unserialize($goods);
+			if(empty($goods)){
 		    $res=ShopCate::select("cate_id")->where("parent_id",$cate_id)->get()->toArray();
 			//dd($res);
 			$arr=[];
@@ -122,6 +134,9 @@ class XcxController extends Controller
                 ->orderBy("shop_goods.goods_id","asc")
 				 ->whereIn("cate_id",$arr)
                 ->paginate(5);
+			     $goodx = serialize($goods);
+			     Redis::set($key,$goodx);
+			 }
 				$response=[
 					'data'=>[
 					   'list'=>$goods->items()
