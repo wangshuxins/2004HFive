@@ -33,11 +33,10 @@ Route::get("/menu/list","Admin\AdminController@list");
 
 //小程序
 Route::prefix('/xcx')->group(function(){
-    Route::get('/','Xcx\XcxController@xcx');
-    Route::post('/openid','Xcx\XcxController@openid');
-    Route::get("/navigation",'Xcx\XcxController@navigation');
-    Route::get("/cate",'Xcx\XcxController@cate');
-    Route::get("/goods",'Xcx\XcxController@goods');
-    Route::get("/detail",'Xcx\XcxController@detail');
+    Route::post('/openid','Xcx\XcxController@openid');//登陆获取openid存取用户信息
+    Route::get("/navigation",'Xcx\XcxController@navigation');//商城幻灯片
+    Route::get("/cate",'Xcx\XcxController@cate');//导航栏
+    Route::get("/goods",'Xcx\XcxController@goods');//商品列表
+    Route::get("/detail",'Xcx\XcxController@detail');//商品详情
 });
 

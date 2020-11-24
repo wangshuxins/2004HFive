@@ -12,6 +12,7 @@ use App\Model\Goods;
 use App\Model\Brand;
 class XcxController extends Controller
 {
+	//登陆获取openid存储用户信息
     public function openid(){
         $appid = 'wx38a0b89cb32b272b'; // 小程序APPID
         $secret = '58426119d67e249aa4e4c2f8082db5f0'; // 小程序secret
@@ -53,6 +54,7 @@ class XcxController extends Controller
         }
         return $response;
     }
+	//首页幻灯片
     public function navigation(){
 		
         $key = "slide";
@@ -67,6 +69,7 @@ class XcxController extends Controller
         Redis::expire($key,7200);
         return $slide;
     }
+	//导航栏
     public function cate(){
 		//Redis::flushall();exit;
         $key = "cate";
@@ -86,6 +89,7 @@ class XcxController extends Controller
         Redis::expire($key,7200);
         return $shopcate;
     }
+	//商品列表
     public function goods(){
 		 if(!request()->get("page")){
             $page = 1;
@@ -145,6 +149,7 @@ class XcxController extends Controller
 		} 
        return $response;
     }
+	//商品详情
     public function detail(){
 		
       // Redis::flushall();exit;
