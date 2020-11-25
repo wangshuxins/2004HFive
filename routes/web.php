@@ -38,5 +38,6 @@ Route::prefix('/xcx')->group(function(){
     Route::get("/cate",'Xcx\XcxController@cate');//导航栏
     Route::get("/goods",'Xcx\XcxController@goods');//商品列表
     Route::get("/detail",'Xcx\XcxController@detail');//商品详情
+	Route::get("/cart",'Xcx\XcxController@cart');//加入购物车
 });
 
