@@ -10,7 +10,6 @@ use App\Model\ShopNav;
 use App\Model\ShopCate;
 use App\Model\Goods;
 use App\Model\Brand;
-use App\Model\XcxUser;
 class XcxController extends Controller
 {
 	//登陆获取openid存储用户信息
@@ -207,8 +206,6 @@ class XcxController extends Controller
 	  dd($openid);
 	   
       $user_id = XcxUser::select("user_id")->where("openid",$openid)->get()->toArray();
-
-	  
 
 	 
 	}
