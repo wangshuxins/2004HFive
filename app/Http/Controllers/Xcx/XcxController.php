@@ -208,13 +208,32 @@ class XcxController extends Controller
 
 	  $user_id = $user_id[0]["id"];
 
-	  $data = [
-		"goods_id"=>$goods_id,
-	    "goods_totall"=>$goods_totall,
-		"buy_number"=>$nums,
-		"user_id"=>$user_id,
-        "add_time"=>time()
-	  ];
-     ShopCart::insert($data); 
+
+      	     $tiaojian = CarModel::where("user_id", $user_id)->where("goods_id", $goods_id)->first();
+			//查看之前有没有添加过此商品
+			if (!$tiaojian) {
+				 $data = [
+					"goods_id"=>$goods_id,
+					"goods_totall"=>$goods_totall,
+					"buy_number"=>$nums,
+					"user_id"=>$user_id,
+					"add_time"=>time()
+	             ];
+               ShopCart::insert($data); 
+			}else {
+				$data = [
+					"goods_id"=>$goods_id,
+					"goods_totall"=>$goods_totall+$tiaojian->goods_totall,//总价,
+					"buy_number"=>$tiaojian->buy_number,
+					"user_id"=>$user_id,
+					"add_time"=>time()
+	             ];
+				
+				$sumx = CarModel::select("buy_number")->where("goods_id", $goods_id)->first()->toArray();
+				$buy_numberx = ($sumx['buy_number']);
+				$goods_count = $goods_num+$buy_numberx;
+				ShopCart::where("cart_id", $tiaojian->cart_id)->update($data);
+			}
+
 	}
 }
