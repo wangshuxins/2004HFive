@@ -32,7 +32,7 @@ Route::get("/menu","Admin\AdminController@menu");
 Route::get("/menu/list","Admin\AdminController@list");
 
 //小程序
-Route::prefix('/xcx')->middware("login")->group(function(){
+Route::prefix('/xcx')->middleware("login")->group(function(){
     Route::post('/openid','Xcx\XcxController@openid');//登陆获取openid存取用户信息
     Route::get("/navigation",'Xcx\XcxController@navigation');//商城幻灯片
     Route::get("/cate",'Xcx\XcxController@cate');//导航栏
