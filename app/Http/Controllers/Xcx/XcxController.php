@@ -257,9 +257,37 @@ class XcxController extends Controller
 	}
 	public function shoucang(){
 	
-	
-		$token = request()->token;
-		dd($token);
+	    $user_id=$_SERVER['user_id'];
+
+		$key = "ZADD:shoucang_".$user_id;
+
+		$zrange = Redis::zrange($key,0,-1);
+		if(empty($zrange)){
+		   Redis::zadd($key,0,$user_id)
+		   $array = [
+			  "error_no"=>0,
+			  "error_msg"=>"已收藏",
+		   ];
+		}
+		$zscore = Redis::zscore($key);
+
+		if($zscore==0){
+		   Redis::zadd($key,1,$user_id)
+		   $array = [
+			  "error_no"=>1,
+			  "error_msg"=>"收藏",
+		   ];
+		
+		}else{
+		   Redis::zadd($key,0,$user_id)
+		   $array = [
+			  "error_no"=>0,
+			  "error_msg"=>"已收藏",
+		   ];
+		}
+
+		return $array;
+		
 	
 	}
 }
