@@ -10,6 +10,7 @@ use App\Model\ShopNav;
 use App\Model\ShopCate;
 use App\Model\Goods;
 use App\Model\Brand;
+use App\Model\User;
 class XcxController extends Controller
 {
 	//登陆获取openid存储用户信息
@@ -201,8 +202,12 @@ class XcxController extends Controller
 
 	  $userinfo = Redis::hgetall($key);
 
-	  dd($userinfo);
+	  $openid = $userinfo["open_id"];
 
+      $user_id = User::select("user_id")->where("openid",$openid)->first()->toArray();
 
+	  $user_id = $user_id["user_id"];
+
+	  echo $user_id;
 	}
 }
