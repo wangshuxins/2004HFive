@@ -258,9 +258,8 @@ class XcxController extends Controller
 	public function shoucang(){
 	
 	
-		$user_id=$_SERVER['user_id'];
-
-		dd($user_id);
+		$token = request()->token;
+		dd($token);
 	
 	}
 }
