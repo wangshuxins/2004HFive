@@ -245,7 +245,7 @@ class XcxController extends Controller
 				if($goods_count>$goods_sum){
 					$array = [
 					   "error_no"=>'200001',
-					   "error_msg"=>"库存不足"
+					   "error_msg"=>"库存不足",
 					   "tubiao"=>"loading"
 					];
 
@@ -256,7 +256,7 @@ class XcxController extends Controller
 				if($res){
 					$array = [
 						   "error_no"=>'000000',
-						   "error_msg"=>"添加成功"
+						   "error_msg"=>"添加成功",
 					       "tubiao"=>"success"
 					];
 				}
