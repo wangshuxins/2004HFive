@@ -256,8 +256,12 @@ class XcxController extends Controller
 
 	}
 	public function shoucang(){
+
+		$goods_id = request()->goods_id;
 	
 	    $user_id=$_SERVER['user_id'];
+
+        $user_id = $user_id."_".$goods_id;
 
 		$key = "ZADD:shoucang_".$user_id;
 
