@@ -219,7 +219,14 @@ class XcxController extends Controller
 					"user_id"=>$user_id,
 					"add_time"=>time()
 	             ];
-               ShopCart::insert($data); 
+
+               $data = ShopCart::insert($data); 
+			   if($data){
+			       $array = [
+					   "error_no"=>'000000',
+					   "error_msg"=>"添加成功"
+				];
+			   }
 			}else {
 				$data = [
 					"goods_id"=>$goods_id,
@@ -237,13 +244,20 @@ class XcxController extends Controller
 
 					$array = [
 					   "error_no"=>'200001',
-					   "error_msg"=>"购物车与此条购买数量超出库存量"
+					   "error_msg"=>"库存不足"
 					];
 
-					return $array;
+					
 				}
-				ShopCart::where("cart_id", $tiaojian->cart_id)->update($data);
+				$res = ShopCart::where("cart_id", $tiaojian->cart_id)->update($data);
+				if($res){
+					$array = [
+						   "error_no"=>'000000',
+						   "error_msg"=>"添加成功"
+					];
+				}
 			}
+			return $array;
 
 	}
 }
