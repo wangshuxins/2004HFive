@@ -158,7 +158,7 @@ class XcxController extends Controller
         $detail = Redis::get($key);
         $detail = unserialize($detail);
         if(empty($detail)){
-            $detail =  Goods::select("goods_id","goods_imgs","goods_name","goods_price","goods_store","goods_desc")->where("goods_id",$goods_id)->where("is_del",1)->first()->toArray();
+            $detail =  Goods::select("goods_id","goods_imgs","goods_img","goods_name","goods_price","goods_store","goods_desc")->where("goods_id",$goods_id)->where("is_del",1)->first()->toArray();
             $details = serialize($detail);
             Redis::set($key,$details);
         }
@@ -168,7 +168,8 @@ class XcxController extends Controller
 			"goods_price"=>$detail['goods_price'],
             "goods_store"=>$detail['goods_store'],
             "goods_desc"=>explode(",",$detail["goods_desc"]),
-            "goods_id"=>$detail["goods_id"]
+            "goods_id"=>$detail["goods_id"],
+			"goods_img"=>$detail["goods_img"]
 		];
         return $detail;
     }
