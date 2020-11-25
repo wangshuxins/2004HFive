@@ -205,7 +205,9 @@ class XcxController extends Controller
 	   
       $user_id = XcxUser::select("id")->where("open_id",$openid)->get()->toArray();
 
-	  dd($user_id);
+	  $user_id = $user_id[0]["id"];
+
+	  echo $user_id;
 
 	 
 	}
