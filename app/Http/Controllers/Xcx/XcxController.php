@@ -191,7 +191,7 @@ class XcxController extends Controller
 
 	  $goods_id = request()->goods_id;
 
-	  $goods_totall = request()->goods_totall
+	  $goods_totall = request()->goods_totall;
 
 	  $nums = request()->nums;
 
