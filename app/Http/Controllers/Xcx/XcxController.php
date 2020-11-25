@@ -44,6 +44,7 @@ class XcxController extends Controller
                 XcxUser::insert($datas);
             }
 			 $openid = $array['openid'];
+
 			$redis = [
 				   'open_id'=>$openid,
 				   'nickname'=>$post["nickName"],
@@ -55,6 +56,7 @@ class XcxController extends Controller
 					'avatarUrl'=>$post['avatarUrl'],
 					'type'=>3,
 					'add_time'=>time(),
+				    'user_id'=>$post['id']
 			];
             $token = sha1($array['openid'].$array['session_key'].mt_rand(0,999999));
             $key = "hsah:xcx_token_".$token;
