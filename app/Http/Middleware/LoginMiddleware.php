@@ -20,10 +20,15 @@ class LoginMiddleware
 	   $key = "hsah:xcx_token_".$token;
 
 	   $userinfo = Redis::hgetall($key);
-	   if($userinfo){
-		   dd($userinfo);
+	   $openid = $userinfo["open_id"];
+	   
+      $user_id = XcxUser::select("id")->where("open_id",$openid)->get()->toArray();
 
-	       $_SERVER['uid'] = $userinfo['user_id'];
+	  $user_id = $user_id[0]["id"];
+
+	   if($userinfo){
+
+	       $_SERVER['user_id'] = $user_id;
 		  
 	   }else{
 	       $response = [
