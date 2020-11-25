@@ -228,9 +228,9 @@ class XcxController extends Controller
 					"user_id"=>$user_id,
 					"add_time"=>time()
 	             ];
-				
-				$sumx = ShopCart::select("buy_number")->where("user_id",$user_id)->where("goods_id", $goods_id)->first()->toArray();
+				$sums = Goods::select("goods_store")->where("goods_id",$goods_id)->first()->toArray();
 				$goods_sum = ($sums['goods_store']);
+				$sumx = ShopCart::select("buy_number")->where("user_id",$user_id)->where("goods_id", $goods_id)->first()->toArray();
 				$buy_numberx = ($sumx['buy_number']);
 				$goods_count = $nums+$buy_numberx;
 				if($goods_count>$goods_sum){
