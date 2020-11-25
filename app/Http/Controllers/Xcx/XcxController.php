@@ -59,7 +59,7 @@ class XcxController extends Controller
             $token = sha1($array['openid'].$array['session_key'].mt_rand(0,999999));
             $key = "hsah:xcx_token_".$token;
             Redis::hMset($key,$redis);
-			Redis::expire($key,7200);
+			//Redis::expire($key,7200);
                $response = [
                    'error_no'=>'0',
                    'error_msg'=>'登陆成功',
