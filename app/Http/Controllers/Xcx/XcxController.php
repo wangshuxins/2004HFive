@@ -241,13 +241,13 @@ class XcxController extends Controller
 				$buy_numberx = ($sumx['buy_number']);
 				$goods_count = $nums+$buy_numberx;
 				if($goods_count>$goods_sum){
-
 					$array = [
 					   "error_no"=>'200001',
 					   "error_msg"=>"库存不足"
 					];
 
-					
+					return $array;
+	
 				}
 				$res = ShopCart::where("cart_id", $tiaojian->cart_id)->update($data);
 				if($res){
