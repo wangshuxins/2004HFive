@@ -186,4 +186,22 @@ class XcxController extends Controller
 		];
         return $detail;
     }
+	//加入购物车
+	public function cart(){
+
+	  $goods_id = request()->goods_id;
+
+	  $goods_totall = request()->goods_totall
+
+	  $nums = request()->nums;
+
+	  $token = request()->token;
+
+	  $key = "hsah:xcx_token_".$token;
+
+	  $userinfo = Redis::hget($key);
+
+	  dd($goods_id."---".$goods_totall."---".$nums."---".$token."---".$userinfo);
+
+	}
 }
