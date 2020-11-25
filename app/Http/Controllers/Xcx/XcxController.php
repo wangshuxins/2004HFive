@@ -229,9 +229,9 @@ class XcxController extends Controller
 					"add_time"=>time()
 	             ];
 				
-				$sumx = ShopCart::select("buy_number")->where("goods_id", $goods_id)->first()->toArray();
-				$buy_numberx = ($sumx['buy_number']);
-				$goods_count = $goods_num+$buy_numberx;
+				//$sumx = ShopCart::select("buy_number")->where("goods_id", $goods_id)->first()->toArray();
+				//$buy_numberx = ($sumx['buy_number']);
+				//$goods_count = $goods_num+$buy_numberx;
 				ShopCart::where("cart_id", $tiaojian->cart_id)->update($data);
 			}
 
