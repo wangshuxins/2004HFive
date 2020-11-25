@@ -230,6 +230,7 @@ class XcxController extends Controller
 	             ];
 				
 				$sumx = ShopCart::select("buy_number")->where("user_id",$user_id)->where("goods_id", $goods_id)->first()->toArray();
+				$goods_sum = ($sums['goods_store']);
 				$buy_numberx = ($sumx['buy_number']);
 				$goods_count = $nums+$buy_numberx;
 				if($goods_count>$goods_sum){
