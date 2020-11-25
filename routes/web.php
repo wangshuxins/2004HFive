@@ -40,5 +40,6 @@ Route::prefix('/xcx')->group(function(){
     Route::get("/detail",'Xcx\XcxController@detail');//商品详情
 	Route::get("/cart",'Xcx\XcxController@cart')->middleware("login");//加入购物车
 	Route::get("/shoucang",'Xcx\XcxController@shoucang')->middleware("login");
+	Route::get("/catshoucang",'Xcx\XcxController@catshoucang')->middleware("login");
 });
 

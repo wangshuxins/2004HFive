@@ -294,4 +294,39 @@ class XcxController extends Controller
 		
 	
 	}
+	public function catshoucang(){
+
+		$goods_id = request()->goods_id;
+	
+	    $user_id=$_SERVER['user_id'];
+
+        $user_id = $user_id."_".$goods_id;
+
+		$key = "ZADD:shoucang_".$user_id;
+
+		$zrange = Redis::zrange($key,0,-1);
+		if(empty($zrange)){
+		   $array = [
+			  "error_no"=>1,
+			  "error_msg"=>"收藏",
+		   ];
+		}
+		$zscore = Redis::zscore($key,$user_id);
+
+		if($zscore==0){
+		   $array = [
+			  "error_no"=>0,
+			  "error_msg"=>"已收藏",
+		   ];
+		
+		}else{
+		   
+		   $array = [
+			  "error_no"=>1,
+			  "error_msg"=>"收藏",
+		   ];
+		}
+
+		return $array;
+	}
 }
