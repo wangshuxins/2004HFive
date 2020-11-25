@@ -199,7 +199,7 @@ class XcxController extends Controller
 
 	  $key = "hsah:xcx_token_".$token;
 
-	  $userinfo = Redis::hget($key);
+	  $userinfo = Redis::hgetall($key);
 
 	  dd($goods_id."---".$goods_totall."---".$nums."---".$token."---".$userinfo);
 
