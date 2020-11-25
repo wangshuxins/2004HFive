@@ -272,6 +272,7 @@ class XcxController extends Controller
 			  "error_no"=>0,
 			  "error_msg"=>"已收藏",
 		   ];
+		   return $array;
 		}
 		$zscore = Redis::zscore($key,$user_id);
 
