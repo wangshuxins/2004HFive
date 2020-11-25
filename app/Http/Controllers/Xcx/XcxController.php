@@ -201,7 +201,8 @@ class XcxController extends Controller
 
 	  $userinfo = Redis::hgetall($key);
 
-	  dd($goods_id."---".$goods_totall."---".$nums."---".$token."---".$userinfo);
+	  dd($userinfo);
+
 
 	}
 }
