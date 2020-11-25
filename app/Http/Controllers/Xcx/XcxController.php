@@ -224,7 +224,9 @@ class XcxController extends Controller
 			   if($data){
 			       $array = [
 					   "error_no"=>'000000',
-					   "error_msg"=>"添加成功"
+					   "error_msg"=>"添加成功",
+					   "tubiao"=>"success"
+
 				];
 			   }
 			}else {
@@ -244,6 +246,7 @@ class XcxController extends Controller
 					$array = [
 					   "error_no"=>'200001',
 					   "error_msg"=>"库存不足"
+					   "tubiao"=>"loading"
 					];
 
 					return $array;
@@ -254,6 +257,7 @@ class XcxController extends Controller
 					$array = [
 						   "error_no"=>'000000',
 						   "error_msg"=>"添加成功"
+					       "tubiao"=>"success"
 					];
 				}
 			}
