@@ -197,12 +197,7 @@ class XcxController extends Controller
 	  $nums = request()->nums;
       
       $user_id=$_SERVER['user_id'];
-	 
-	  $openid = $userinfo["open_id"];
-	   
-      $user_id = XcxUser::select("id")->where("open_id",$openid)->get()->toArray();
-
-	  $user_id = $user_id[0]["id"];
+	
 
 
       	     $tiaojian = ShopCart::where("user_id", $user_id)->where("goods_id", $goods_id)->first();
