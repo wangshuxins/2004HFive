@@ -11,6 +11,7 @@ use App\Model\ShopCate;
 use App\Model\Goods;
 use App\Model\Brand;
 use App\Model\ShopCart;
+use App\Model\Collect;
 class XcxController extends Controller
 {
 	//登陆获取openid存储用户信息
@@ -267,6 +268,7 @@ class XcxController extends Controller
 
 		$zrange = Redis::zrange($key,0,-1);
 		if(empty($zrange)){
+		   Collect::insert(['goods_id'=>$goods_id,'user_id'=>$user_id,'is_collect'=>0,'add_time'=>time()]);
 		   Redis::zadd($key,0,$user_id);
 		   $array = [
 			  "error_no"=>0,
@@ -277,6 +279,7 @@ class XcxController extends Controller
 		$zscore = Redis::zscore($key,$user_id);
 
 		if($zscore==0){
+		  Collect::where("user_id",$user_id)->where('goods_id',$goods_id)->update(['is_collect'=>1,'add_time'=>time()]);
 		   Redis::zadd($key,1,$user_id);
 		   $array = [
 			  "error_no"=>1,
@@ -284,6 +287,7 @@ class XcxController extends Controller
 		   ];
 		
 		}else{
+		Collect::where("user_id",$user_id)->where('goods_id',$goods_id)->update(['is_collect'=>0,'add_time'=>time()]);
 		   Redis::zadd($key,0,$user_id);
 		   $array = [
 			  "error_no"=>0,
