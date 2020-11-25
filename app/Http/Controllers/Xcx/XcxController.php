@@ -42,9 +42,21 @@ class XcxController extends Controller
 				];
                 XcxUser::insert($datas);
             }
+			$redis = [
+				   'open_id'=>$openid,
+				   'nickname'=>$post["nickName"],
+					'gender'=>$post['gender'],
+					'language'=>$post['language'],
+					'city'=>$post['city'],
+					'province'=>$post['province'],
+					'country'=>$post['country'],
+					'avatarUrl'=>$post['avatarUrl'],
+					'type'=>3,
+					'add_time'=>time(),
+			];
             $token = sha1($array['openid'].$array['session_key'].mt_rand(0,999999));
             $key = "hsah:xcx_token_".$token;
-            Redis::hMset($key,$datas);
+            Redis::hMset($key,$redis);
 			Redis::expire($key,7200);
                $response = [
                    'error_no'=>'0',
