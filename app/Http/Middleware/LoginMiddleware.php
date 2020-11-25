@@ -21,7 +21,6 @@ class LoginMiddleware
 
 	   $userinfo = Redis::hgetall($key);
 	   if($userinfo){
-            dd($_SERVER);
 	       $_SERVER['user_id'] = $userinfo['user_id'];
 		  
 	   }else{
