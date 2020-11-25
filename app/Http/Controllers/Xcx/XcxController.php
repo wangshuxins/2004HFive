@@ -42,6 +42,7 @@ class XcxController extends Controller
 				];
                 XcxUser::insert($datas);
             }
+			 $openid = $array['openid'];
 			$redis = [
 				   'open_id'=>$openid,
 				   'nickname'=>$post["nickName"],
