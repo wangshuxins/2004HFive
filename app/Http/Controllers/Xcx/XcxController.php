@@ -10,6 +10,7 @@ use App\Model\ShopNav;
 use App\Model\ShopCate;
 use App\Model\Goods;
 use App\Model\Brand;
+use App\Model\ShopCart;
 class XcxController extends Controller
 {
 	//登陆获取openid存储用户信息
@@ -207,8 +208,13 @@ class XcxController extends Controller
 
 	  $user_id = $user_id[0]["id"];
 
-	  echo $user_id;
-
-	 
+	  $data = [
+		"goods_id"=>$goods_id,
+	    "goods_totall"=>$goods_totall,
+		"buy_number"=>$nums,
+		"user_id"=>$user_id,
+        "add_time"=>time()
+	  ];
+     ShopCart::insert($data); 
 	}
 }
