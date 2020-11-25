@@ -264,7 +264,7 @@ class XcxController extends Controller
 
         $user_id = $user_ids."_".$goods_id;
 
-		$key = "ZADD:shoucang_".$user_ids;
+		$key = "ZADD:shoucang_".$user_id;
 
 		$zrange = Redis::zrange($key,0,-1);
 		if(empty($zrange)){
