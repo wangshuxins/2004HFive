@@ -195,12 +195,9 @@ class XcxController extends Controller
 	  $goods_totall = request()->goods_totall;
 
 	  $nums = request()->nums;
+      
 
-	  $token = request()->token;
-
-	  $key = "hsah:xcx_token_".$token;
-
-	  $userinfo = Redis::hgetall($key);
+	 
 
 	  $openid = $userinfo["open_id"];
 	   
