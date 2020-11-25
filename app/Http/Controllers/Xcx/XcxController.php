@@ -255,4 +255,12 @@ class XcxController extends Controller
 			return $array;
 
 	}
+	public function shoucang(){
+	
+	
+		$user_id=$_SERVER['user_id'];
+
+		dd($user_id);
+	
+	}
 }
