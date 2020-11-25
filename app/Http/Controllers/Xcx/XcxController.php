@@ -204,10 +204,12 @@ class XcxController extends Controller
 
 	  $openid = $userinfo["openid"];
 
+	   dd($openid);
+
       $user_id = User::select("user_id")->where("openid",$openid)->get()->toArray();
 
 	  
 
-	  dd($user_id);
+	 
 	}
 }
