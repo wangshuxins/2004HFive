@@ -196,9 +196,8 @@ class XcxController extends Controller
 
 	  $nums = request()->nums;
       
-
+      $user_id=$_SERVER['user_id'];
 	 
-
 	  $openid = $userinfo["open_id"];
 	   
       $user_id = XcxUser::select("id")->where("open_id",$openid)->get()->toArray();
