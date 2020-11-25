@@ -229,9 +229,18 @@ class XcxController extends Controller
 					"add_time"=>time()
 	             ];
 				
-				//$sumx = ShopCart::select("buy_number")->where("goods_id", $goods_id)->first()->toArray();
-				//$buy_numberx = ($sumx['buy_number']);
-				//$goods_count = $goods_num+$buy_numberx;
+				$sumx = ShopCart::select("buy_number")->where("user_id",$user_id)->where("goods_id", $goods_id)->first()->toArray();
+				$buy_numberx = ($sumx['buy_number']);
+				$goods_count = $nums+$buy_numberx;
+				if($goods_count>$goods_sum){
+
+					$array = [
+					   "error_no"=>'200001',
+					   "error_msg"=>"购物车与此条购买数量超出库存量"
+					];
+
+					return $array;
+				}
 				ShopCart::where("cart_id", $tiaojian->cart_id)->update($data);
 			}
 
