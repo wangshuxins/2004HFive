@@ -260,15 +260,15 @@ class XcxController extends Controller
 
 		$goods_id = request()->goods_id;
 	
-	    $user_id=$_SERVER['user_id'];
+	    $user_ids=$_SERVER['user_id'];
 
-        $user_id = $user_id."_".$goods_id;
+        $user_id = $user_ids."_".$goods_id;
 
-		$key = "ZADD:shoucang_".$user_id;
+		$key = "ZADD:shoucang_".$user_ids;
 
 		$zrange = Redis::zrange($key,0,-1);
 		if(empty($zrange)){
-		   Collect::insert(['goods_id'=>$goods_id,'user_id'=>$user_id,'is_collect'=>0,'add_time'=>time()]);
+		   Collect::insert(['goods_id'=>$goods_id,'user_id'=>$user_ids,'is_collect'=>0,'add_time'=>time()]);
 		   Redis::zadd($key,0,$user_id);
 		   $array = [
 			  "error_no"=>0,
@@ -279,7 +279,7 @@ class XcxController extends Controller
 		$zscore = Redis::zscore($key,$user_id);
 
 		if($zscore==0){
-		  Collect::where("user_id",$user_id)->where('goods_id',$goods_id)->update(['is_collect'=>1,'add_time'=>time()]);
+		  Collect::where("user_id",$user_ids)->where('goods_id',$goods_id)->update(['is_collect'=>1,'add_time'=>time()]);
 		   Redis::zadd($key,1,$user_id);
 		   $array = [
 			  "error_no"=>1,
@@ -287,7 +287,7 @@ class XcxController extends Controller
 		   ];
 		
 		}else{
-		Collect::where("user_id",$user_id)->where('goods_id',$goods_id)->update(['is_collect'=>0,'add_time'=>time()]);
+		Collect::where("user_id",$user_ids)->where('goods_id',$goods_id)->update(['is_collect'=>0,'add_time'=>time()]);
 		   Redis::zadd($key,0,$user_id);
 		   $array = [
 			  "error_no"=>0,
