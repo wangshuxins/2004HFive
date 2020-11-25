@@ -206,8 +206,8 @@ class XcxController extends Controller
 
       $user_id = User::select("user_id")->where("openid",$openid)->get()->toArray();
 
-	  $user_id = $user_id["user_id"];
+	  
 
-	  echo $user_id;
+	  dd($user_id);
 	}
 }
