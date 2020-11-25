@@ -202,10 +202,12 @@ class XcxController extends Controller
 
 	  $userinfo = Redis::hgetall($key);
 
+	  dd($userinfo);
+
+
 	  $openid = $userinfo["openid"];
 
-	   dd($openid);
-
+	   
       $user_id = User::select("user_id")->where("openid",$openid)->get()->toArray();
 
 	  
