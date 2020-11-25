@@ -43,9 +43,9 @@ class XcxController extends Controller
                 XcxUser::insert($datas);
             }
             $token = sha1($array['openid'].$array['session_key'].mt_rand(0,999999));
-            $key = "wx_xcx_token".$token;
-            Redis::set($key,time());
-           
+            $key = "hsah:xcx_token_".$token;
+            Redis::hMset($key,$datas);
+			Redis::expire($key,7200);
                $response = [
                    'error_no'=>'0',
                    'error_msg'=>'登陆成功',
