@@ -44,7 +44,7 @@ class XcxController extends Controller
                 XcxUser::insert($datas);
             }
 			 $openid = $array['openid'];
-
+            $post = XcxUser::where("open_id",$array['openid'])->first()
 			$redis = [
 				   'open_id'=>$openid,
 				   'nickname'=>$post["nickName"],
