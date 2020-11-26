@@ -296,8 +296,6 @@ class XcxController extends Controller
 		}
 
 		return $array;
-		
-	
 	}
 	public function catshoucang(){
 
@@ -334,5 +332,9 @@ class XcxController extends Controller
 		}
 
 		return $array;
+	}
+	public function cartlist(){
+	
+	   dd(1234);
 	}
 }
