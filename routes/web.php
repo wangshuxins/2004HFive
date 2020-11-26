@@ -42,5 +42,6 @@ Route::prefix('/xcx')->middleware("login")->group(function(){
 	Route::get("/shoucang",'Xcx\XcxController@shoucang');//收藏;
 	Route::get("/catshoucang",'Xcx\XcxController@catshoucang');//加载收藏;
 	Route::get("/cartlist",'Xcx\XcxController@cartlist');//购物车列表
+	Route::get("/cartsum",'Xcx\XcxController@cartsum');
 });
 
