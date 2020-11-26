@@ -244,7 +244,7 @@ class XcxController extends Controller
 					   "error_no"=>'200001',
 					   "error_msg"=>"库存不足",
 					   "tubiao"=>"loading",
-					   "sum"=>$sum-1
+					   "sum"=>$sum
 
 					];
 
