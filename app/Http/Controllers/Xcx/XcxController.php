@@ -220,7 +220,7 @@ class XcxController extends Controller
 					   "error_no"=>'000000',
 					   "error_msg"=>"添加成功",
 					   "tubiao"=>"success",
-					   "sum"=>$sum+1
+					   "sum"=>$sum
 
 				];
 			   }
@@ -242,7 +242,7 @@ class XcxController extends Controller
 					   "error_no"=>'200001',
 					   "error_msg"=>"库存不足",
 					   "tubiao"=>"loading",
-						"sum"=>$sum+1
+						"sum"=>$sum
 
 					];
 
@@ -255,7 +255,7 @@ class XcxController extends Controller
 						   "error_no"=>'000000',
 						   "error_msg"=>"添加成功",
 					       "tubiao"=>"success",
-						   "sum"=>$sum+1
+						   "sum"=>$sum
 					];
 				}
 			}
