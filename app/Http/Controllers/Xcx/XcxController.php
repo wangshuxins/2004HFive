@@ -344,7 +344,13 @@ class XcxController extends Controller
 
 	   $sum = ShopCart::where("user_id",$user_id)->sum("buy_number");
 
-       dd($sum);
+	   $array = [
+			  "error_no"=>0,
+			  "error_msg"=>"已收藏",
+		      "sum"=> $sum
+		   ];
+
+       return $array;
 
 
 	}
