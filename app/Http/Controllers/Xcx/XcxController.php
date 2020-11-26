@@ -202,7 +202,7 @@ class XcxController extends Controller
 
 
       	     $tiaojian = ShopCart::where("user_id", $user_id)->where("goods_id", $goods_id)->first();
-
+			  $sum = ShopCart::where("user_id",$user_id)->sum("buy_number");
 			//查看之前有没有添加过此商品
 			if (!$tiaojian) {
 				 $data = [
@@ -210,7 +210,8 @@ class XcxController extends Controller
 					"goods_totall"=>$goods_totall,
 					"buy_number"=>$nums,
 					"user_id"=>$user_id,
-					"add_time"=>time()
+					"add_time"=>time(),
+					
 	             ];
 
                $data = ShopCart::insert($data); 
@@ -218,7 +219,8 @@ class XcxController extends Controller
 			       $array = [
 					   "error_no"=>'000000',
 					   "error_msg"=>"添加成功",
-					   "tubiao"=>"success"
+					   "tubiao"=>"success",
+					   "sum"=>$sum+1
 
 				];
 			   }
@@ -239,7 +241,9 @@ class XcxController extends Controller
 					$array = [
 					   "error_no"=>'200001',
 					   "error_msg"=>"库存不足",
-					   "tubiao"=>"loading"
+					   "tubiao"=>"loading",
+						"sum"=>$sum+1
+
 					];
 
 					return $array;
@@ -250,7 +254,8 @@ class XcxController extends Controller
 					$array = [
 						   "error_no"=>'000000',
 						   "error_msg"=>"添加成功",
-					       "tubiao"=>"success"
+					       "tubiao"=>"success",
+						   "sum"=>$sum+1
 					];
 				}
 			}
