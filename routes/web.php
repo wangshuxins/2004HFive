@@ -40,8 +40,8 @@ Route::prefix('/xcx')->group(function(){
     Route::get("/detail",'Xcx\XcxController@detail');//商品详情
 	Route::get("/cart",'Xcx\XcxController@cart')->middleware("login");//加入购物车
 	Route::get("/shoucang",'Xcx\XcxController@shoucang')->middleware("login");;//收藏;
-	Route::get("/catshoucang",'Xcx\XcxController@catshoucang')->middleware("login");;//加载收藏;
+	Route::get("/catshoucang",'Xcx\XcxController@catshoucang')->middleware("login");//加载收藏;
 	Route::get("/cartlist",'Xcx\XcxController@cartlist');//购物车列表
-	Route::get("/cartsum",'Xcx\XcxController@cartsum');
+	Route::get("/cartsum",'Xcx\XcxController@cartsum')->middleware("login");;
 });
 
