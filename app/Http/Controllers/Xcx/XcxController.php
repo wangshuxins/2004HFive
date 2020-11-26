@@ -339,11 +339,10 @@ class XcxController extends Controller
 	}
 	public function cartsum(){
 	
-	   $goods_id = request()->goods_id;
 	
 	   $user_id=$_SERVER['user_id'];
 
-	   $sum = ShopCart::where("goods_id",$goods_id)->where("user_id",$user_id)->sum("buy_number");
+	   $sum = ShopCart::where("user_id",$user_id)->sum("buy_number");
 
        dd($sum);
 
