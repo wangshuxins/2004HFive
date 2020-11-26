@@ -334,7 +334,7 @@ class XcxController extends Controller
 		return $array;
 	}
 	public function cartlist(){
-	
-	   dd(1234);
+	   $user_id=$_SERVER['user_id'];
+	   dd($user_id);
 	}
 }
