@@ -34,12 +34,12 @@ Route::get("/menu/list","Admin\AdminController@list");
 //小程序
  Route::post('/xcx/openid','Xcx\XcxController@openid');//登陆获取openid存取用户信息
 Route::prefix('/xcx')->middleware("login")->group(function(){
-    Route::get("/navigation",'Xcx\XcxController@navigation')//商城幻灯片
+    Route::get("/navigation",'Xcx\XcxController@navigation');//商城幻灯片
     Route::get("/cate",'Xcx\XcxController@cate');//导航栏
     Route::get("/goods",'Xcx\XcxController@goods');//商品列表
     Route::get("/detail",'Xcx\XcxController@detail');//商品详情
-	Route::get("/cart",'Xcx\XcxController@cart')//加入购物车
-	Route::get("/shoucang",'Xcx\XcxController@shoucang')//收藏;
-	Route::get("/catshoucang",'Xcx\XcxController@catshoucang')//加载收藏;
+	Route::get("/cart",'Xcx\XcxController@cart');//加入购物车
+	Route::get("/shoucang",'Xcx\XcxController@shoucang');//收藏;
+	Route::get("/catshoucang",'Xcx\XcxController@catshoucang');//加载收藏;
 });
 
