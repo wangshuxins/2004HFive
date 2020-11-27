@@ -380,8 +380,6 @@ class XcxController extends Controller
 
 	   $count = ShopCart::where("user_id",$user_id)->where("is_del",1)->count();
 
-	   dd($count);
-
 	    $array = [
 			  "error_no"=>0,
 			  "error_msg"=>"商品个数查询完毕",
