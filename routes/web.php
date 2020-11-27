@@ -41,7 +41,7 @@ Route::prefix('/xcx')->group(function(){
 	Route::get("/cart",'Xcx\XcxController@cart')->middleware("login");//加入购物车
 	Route::get("/shoucang",'Xcx\XcxController@shoucang')->middleware("login");;//收藏;
 	Route::get("/catshoucang",'Xcx\XcxController@catshoucang')->middleware("login");//加载收藏;
-	Route::get("/cartlist",'Xcx\XcxController@cartlist');//购物车列表
-	Route::get("/cartsum",'Xcx\XcxController@cartsum')->middleware("login");;
+	Route::get("/cartlist",'Xcx\XcxController@cartlist')->middleware("login");//购物车列表
+	Route::get("/cartsum",'Xcx\XcxController@cartsum')->middleware("login");
 });
 
