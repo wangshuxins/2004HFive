@@ -356,6 +356,7 @@ class XcxController extends Controller
 	   return $shopcartlist;
 	   
 	}
+	//商品数量
 	public function cartsum(){
 	
 	
@@ -372,4 +373,21 @@ class XcxController extends Controller
        return $array;
 
 	}
+	//商品个数
+	public function counts(){
+
+	   $user_id=$_SERVER['user_id'];
+
+	   $count = ShopCart::select("goods_id")->where("user_id",$user_id)->where("is_del",1)->count();
+
+	    $array = [
+			  "error_no"=>0,
+			  "error_msg"=>"商品个数查询完毕",
+		      "count"=> $count
+		   ];
+
+       return $array;
+
+
+	} 
 }
