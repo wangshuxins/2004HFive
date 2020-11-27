@@ -347,7 +347,11 @@ class XcxController extends Controller
 
 	   $user_id=$_SERVER['user_id'];
 	   
-	   $shopcartlist = ShopCart::leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")->where("user_id",$user_id)->get()->toArray();
+	   $shopcartlist = ShopCart::leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")
+		   ->leftjoin("shop_brand","shop_goods.brand_id","=","shop_brand.brand_id")
+		   ->where("user_id",$user_id)
+		   ->where("shop_cart.is_del","=",1)
+		   ->get()->toArray();
 
 	   return $shopcartlist;
 	   
