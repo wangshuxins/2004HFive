@@ -344,8 +344,13 @@ class XcxController extends Controller
 		return $array;
 	}
 	public function cartlist(){
+
 	   $user_id=$_SERVER['user_id'];
-	   dd($user_id);
+	   
+	   $shopcartlist = ShopCart::where("user_id",$user_id)->get()->toArray();
+
+	   return $shopcartlist;
+	   
 	}
 	public function cartsum(){
 	
