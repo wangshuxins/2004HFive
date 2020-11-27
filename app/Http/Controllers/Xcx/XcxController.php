@@ -351,6 +351,7 @@ class XcxController extends Controller
 		   ->leftjoin("shop_brand","shop_goods.brand_id","=","shop_brand.brand_id")
 		   ->where("user_id",$user_id)
 		   ->where("shop_cart.is_del","=",1)
+		   ->orderBy("shop_cart.add_time","desc")
 		   ->get()->toArray();
 
 	   return $shopcartlist;
