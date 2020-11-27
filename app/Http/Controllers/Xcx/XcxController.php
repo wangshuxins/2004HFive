@@ -347,7 +347,7 @@ class XcxController extends Controller
 
 	   $user_id=$_SERVER['user_id'];
 	   
-	   $shopcartlist = ShopCart::where("user_id",$user_id)->get()->toArray();
+	   $shopcartlist = ShopCart::leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")->where("user_id",$user_id)->get()->toArray();
 
 	   return $shopcartlist;
 	   
