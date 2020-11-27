@@ -378,7 +378,9 @@ class XcxController extends Controller
 
 	   $user_id=$_SERVER['user_id'];
 
-	   $count = ShopCart::select("goods_id")->where("user_id",$user_id)->where("is_del",1)->count();
+	   $count = ShopCart::where("user_id",$user_id)->where("is_del",1)->count();
+
+	   dd($count);
 
 	    $array = [
 			  "error_no"=>0,
