@@ -216,7 +216,7 @@ class XcxController extends Controller
 
                $data = ShopCart::insert($data); 
 			   if($data){
-				   $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->sum("buy_number");
+				   $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->count();
 			       $array = [
 					   "error_no"=>'000000',
 					   "error_msg"=>"添加成功",
@@ -238,7 +238,7 @@ class XcxController extends Controller
 				$sumx = ShopCart::select("buy_number")->where("user_id",$user_id)->where("goods_id", $goods_id)->first()->toArray();
 				$buy_numberx = ($sumx['buy_number']);
 				$goods_count = $nums+$buy_numberx;
-				 $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->sum("buy_number");
+				 $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->count();
 				if($goods_count>$goods_sum){
 					$array = [
 					   "error_no"=>'200001',
@@ -254,7 +254,7 @@ class XcxController extends Controller
 				$res = ShopCart::where("cart_id", $tiaojian->cart_id)->update($data);
 
 				if($res){
-					 $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->sum("buy_number");
+					 $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->count();
 					$array = [
 						   "error_no"=>'000000',
 						   "error_msg"=>"添加成功",
@@ -363,7 +363,7 @@ class XcxController extends Controller
 	
 	   $user_id=$_SERVER['user_id'];
 
-	   $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->sum("buy_number");
+	   $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->count();
 
 	   $array = [
 			  "error_no"=>0,
