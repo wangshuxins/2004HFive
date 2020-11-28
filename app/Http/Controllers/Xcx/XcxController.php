@@ -238,7 +238,7 @@ class XcxController extends Controller
 				$sumx = ShopCart::select("buy_number")->where("user_id",$user_id)->where("goods_id", $goods_id)->first()->toArray();
 				$buy_numberx = ($sumx['buy_number']);
 				$goods_count = $nums+$buy_numberx;
-				 $sum = ShopCart::where("user_id",$user_id)->sum("buy_number");
+				 $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->sum("buy_number");
 				if($goods_count>$goods_sum){
 					$array = [
 					   "error_no"=>'200001',
