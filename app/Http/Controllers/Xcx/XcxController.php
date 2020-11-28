@@ -363,7 +363,7 @@ class XcxController extends Controller
 	
 	   $user_id=$_SERVER['user_id'];
 
-	   $sum = ShopCart::where("user_id",$user_id)->sum("buy_number");
+	   $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->sum("buy_number");
 
 	   $array = [
 			  "error_no"=>0,
@@ -374,21 +374,5 @@ class XcxController extends Controller
        return $array;
 
 	}
-	//商品个数
-	public function counts(){
-
-	   $user_id=$_SERVER['user_id'];
-
-	   $count = ShopCart::where("user_id",$user_id)->where("is_del",1)->count();
-
-	    $array = [
-			  "error_no"=>0,
-			  "error_msg"=>"商品个数查询完毕",
-		      "count"=> $count
-		   ];
-
-       return $array;
-
-
-	} 
+ 
 }
