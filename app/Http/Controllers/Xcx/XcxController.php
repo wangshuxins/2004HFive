@@ -254,7 +254,7 @@ class XcxController extends Controller
 				$res = ShopCart::where("cart_id", $tiaojian->cart_id)->update($data);
 
 				if($res){
-					 $sum = ShopCart::where("user_id",$user_id)->sum("buy_number");
+					 $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->sum("buy_number");
 					$array = [
 						   "error_no"=>'000000',
 						   "error_msg"=>"添加成功",
