@@ -238,11 +238,12 @@ class XcxController extends Controller
 				$goods_sum = ($sums['goods_store']);
 				if(empty($sumx = ShopCart::select("buy_number")->where("is_del",1)->where("user_id",$user_id)->where("goods_id",$goods_id)->first()->toArray())){
 				
-				   $sumx = [
+				
+				    $sumx = [
 						"buy_number"=>0 
 					 ];
 				
-				}    
+				}
 				$buy_numberx = ($sumx['buy_number']);
 				$goods_count = $nums+$buy_numberx;
 				 $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->count();
