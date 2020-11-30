@@ -397,7 +397,7 @@ class XcxController extends Controller
        return $array;
 
 	}
-	public addlist(){
+	public function addlist(){
 	
 	   $goods_id = request()->goods_id;
 
