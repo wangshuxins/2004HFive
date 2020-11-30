@@ -241,7 +241,7 @@ class XcxController extends Controller
 
 				if(empty($sumx)){
 				
-				   "buy_number"=>0,
+				   ["buy_number"=>0]
 				
 				}
 				$buy_numberx = ($sumx['buy_number']);
