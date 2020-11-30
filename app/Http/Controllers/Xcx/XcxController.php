@@ -421,7 +421,7 @@ class XcxController extends Controller
 	   
 	       $array = [
 			  "error_no"=>0,
-			  "error_msg"=>"商品添加成功",
+			  "error_msg"=>"商品添加成功!",
 		   ];
 
            return $array;
