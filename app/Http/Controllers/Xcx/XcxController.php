@@ -236,12 +236,12 @@ class XcxController extends Controller
 	             ];
 				$sums = Goods::select("goods_store")->where("goods_id",$goods_id)->first()->toArray();
 				$goods_sum = ($sums['goods_store']);
-				if(empty($sumx = ShopCart::select("buy_number")->where("is_del",1)->where("user_id",$user_id)->where("goods_id",$goods_id)->first()->toArray())){
+
+				$sumx = ShopCart::select("buy_number")->where("user_id",$user_id)->where("is_del",1)->where("goods_id", $goods_id)->first()->toArray();
+
+				if(empty($sumx)){
 				
-				
-				    $sumx = [
-						"buy_number"=>0 
-					 ];
+				   "buy_number"=>0
 				
 				}
 				$buy_numberx = ($sumx['buy_number']);
@@ -253,6 +253,8 @@ class XcxController extends Controller
 					   "error_msg"=>"库存不足",
 					   "tubiao"=>"loading",
 					   "sum"=>$sum,
+					   
+
 					];
 
 					return $array;
