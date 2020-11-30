@@ -398,6 +398,8 @@ class XcxController extends Controller
 
 	}
 	public function addlist(){
+
+	   $user_id=$_SERVER['user_id'];
 	
 	   $goods_id = request()->goods_id;
 
@@ -405,8 +407,26 @@ class XcxController extends Controller
 
 	   $goods_store = request()->goods_store;
 
-	   dd($goods_id."_".$buy_number."_".$goods_store);
-	
+	   $data = [
+		   
+	      "goods_id"=>$goods_id,
+		  "buy_number"=>$buy_number,
+		  "goods_store"=>$goods_store
+	   
+	   ];
+
+	   $shopcart = ShopCart::where("user_id",$user_id)->where("is_del",1)->update($data);
+
+	   if($shopcart){
+	   
+	       $array = [
+			  "error_no"=>0,
+			  "error_msg"=>"商品添加成功",
+		   ];
+
+           return $array;
+	   
+	   }
 	
 	}
  

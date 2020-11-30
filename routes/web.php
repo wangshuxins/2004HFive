@@ -44,6 +44,6 @@ Route::prefix('/xcx')->group(function(){
 	Route::get("/cartlist",'Xcx\XcxController@cartlist')->middleware("login");//购物车列表
 	Route::get("/cartsum",'Xcx\XcxController@cartsum')->middleware("login");//商品数量
 	Route::get("/counts",'Xcx\XcxController@counts')->middleware("login");//商品个数
-	Route::get("/addlist",'Xcx\XcxController@addlist')->middleware("login");//商品个数
+	Route::get("/addlist",'Xcx\XcxController@addlist')->middleware("login");//商品添加
 });
 
