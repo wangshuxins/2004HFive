@@ -397,5 +397,17 @@ class XcxController extends Controller
        return $array;
 
 	}
+	public addlist(){
+	
+	   $goods_id = request()->goods_id;
+
+       $buy_number = request()->buy_number;
+
+	   $goods_store = request()->goods_store;
+
+	   dd($goods_id."_".$buy_number."_".$goods_store);
+	
+	
+	}
  
 }
