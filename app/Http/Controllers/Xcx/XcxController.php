@@ -231,7 +231,8 @@ class XcxController extends Controller
 					"goods_totall"=>$goods_totall+$tiaojian->goods_totall,//总价,
 					"buy_number"=>$nums+$tiaojian->buy_number,
 					"user_id"=>$user_id,
-					"add_time"=>time()
+					"add_time"=>time(),
+					"is_del"=>1
 	             ];
 				$sums = Goods::select("goods_store")->where("goods_id",$goods_id)->first()->toArray();
 				$goods_sum = ($sums['goods_store']);
@@ -245,8 +246,6 @@ class XcxController extends Controller
 					   "error_msg"=>"库存不足",
 					   "tubiao"=>"loading",
 					   "sum"=>$sum,
-					   "is_del"=>1
-
 					];
 
 					return $array;
