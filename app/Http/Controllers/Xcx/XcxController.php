@@ -242,7 +242,7 @@ class XcxController extends Controller
 			     $data = [
 					"goods_id"=>$goods_id,
 					"goods_totall"=>$goods_totall+$tiaojian->goods_totall,//总价,
-					"buy_number"=>$tiaojian->buy_number,
+					"buy_number"=>$nums,
 					"user_id"=>$user_id,
 					"add_time"=>time(),
 					"is_del"=>1
