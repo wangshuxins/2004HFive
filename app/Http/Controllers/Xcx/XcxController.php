@@ -244,7 +244,8 @@ class XcxController extends Controller
 					   "error_no"=>'200001',
 					   "error_msg"=>"库存不足",
 					   "tubiao"=>"loading",
-					   "sum"=>$sum
+					   "sum"=>$sum,
+					   "is_del"=>1
 
 					];
 
@@ -254,7 +255,7 @@ class XcxController extends Controller
 				$res = ShopCart::where("cart_id", $tiaojian->cart_id)->update($data);
 
 				if($res){
-					 $sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->count();
+					$sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->count();
 					$array = [
 						   "error_no"=>'000000',
 						   "error_msg"=>"添加成功",
