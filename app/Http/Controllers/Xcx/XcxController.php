@@ -236,7 +236,7 @@ class XcxController extends Controller
 	             ];
 				$sums = Goods::select("goods_store")->where("goods_id",$goods_id)->first()->toArray();
 				$goods_sum = ($sums['goods_store']);
-				if(empty($sumx = ShopCart::select("buy_number")->where("is_del",1)->where("user_id",$user_id)->where("goods_id",$goods_id)->first()->toArray()){
+				if(empty($sumx = ShopCart::select("buy_number")->where("is_del",1)->where("user_id",$user_id)->where("goods_id",$goods_id)->first()->toArray())){
 				
 				   $sumx = [
 						"buy_number"=>0 
