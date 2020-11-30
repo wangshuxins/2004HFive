@@ -405,14 +405,9 @@ class XcxController extends Controller
 
        $buy_number = request()->buy_number;
 
-	   $goods_store = request()->goods_store;
-
 	   $data = [
-		   
 	      "goods_id"=>$goods_id,
 		  "buy_number"=>$buy_number,
-		  "goods_store"=>$goods_store
-	   
 	   ];
 
 	   $shopcart = ShopCart::where("user_id",$user_id)->where("is_del",1)->update($data);
