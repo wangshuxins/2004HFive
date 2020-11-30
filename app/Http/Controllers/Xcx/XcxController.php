@@ -237,15 +237,22 @@ class XcxController extends Controller
 				$sums = Goods::select("goods_store")->where("goods_id",$goods_id)->first()->toArray();
 				$goods_sum = ($sums['goods_store']);
 
-				
 				if(empty(ShopCart::select("buy_number")->where("user_id",$user_id)->where("is_del",1)->where("goods_id", $goods_id)->first())){
+
+			     $data = [
+					"goods_id"=>$goods_id,
+					"goods_totall"=>$goods_totall+$tiaojian->goods_totall,//总价,
+					"buy_number"=>$tiaojian->buy_number,
+					"user_id"=>$user_id,
+					"add_time"=>time(),
+					"is_del"=>1
+	             ];
 				
 				  $sumx = [
 					  
 				    'buy_number'=>0
 
 				  ];
-				
 				}else{
 				
 				   $sumx = ShopCart::select("buy_number")->where("user_id",$user_id)->where("is_del",1)->where("goods_id", $goods_id)->first()->toArray();
