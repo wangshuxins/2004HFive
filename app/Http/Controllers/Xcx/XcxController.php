@@ -424,7 +424,7 @@ class XcxController extends Controller
 	
 	}
 
-	public function delete(){
+	public function deletes(){
 	
 	   $goods_ids = request()->goods_ids;
 
