@@ -264,7 +264,7 @@ class XcxController extends Controller
 				if($goods_count>$goods_sum){
 					$array = [
 					   "error_no"=>'200001',
-					   "error_msg"=>"库存不足",
+					   "error_msg"=>"商品加购件数(含以加购件数)以超过库存",
 					   "tubiao"=>"loading",
 					   "sum"=>$sum,
 					   
@@ -280,7 +280,7 @@ class XcxController extends Controller
 					$sum = ShopCart::where("user_id",$user_id)->where("is_del",1)->count();
 					$array = [
 						   "error_no"=>'000000',
-						   "error_msg"=>"添加成功",
+						   "error_msg"=>"添加成功,在购物车等亲~",
 					       "tubiao"=>"success",
 						   "sum"=>$sum
 					];
