@@ -405,8 +405,11 @@ class XcxController extends Controller
 
        $buy_number = request()->buy_number;
 
+	   $goods_price = request()->goods_price;
+
 	   $data = [
 		  "buy_number"=>$buy_number,
+		  "goods_total"=>$goods_price*$buy_number
 	   ];
 
 	   $shopcart = ShopCart::where("user_id",$user_id)->where("goods_id",$goods_id,)->where("is_del",1)->update($data);
@@ -432,7 +435,7 @@ class XcxController extends Controller
 
 	   $goods_ids = explode(",",$goods_ids);
 
-	   $delete = ShopCart::where("user_id",$user_id)->whereIn("goods_id",$goods_ids)->update(["is_del"=>0]);
+	   $delete = ShopCart::where("user_id",$user_id)->whereIn("goods_id",$goods_ids)->update(["goods_total"=>0,"is_del"=>0]);
 
 	   if($delete){
 	   
