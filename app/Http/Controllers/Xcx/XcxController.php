@@ -428,9 +428,28 @@ class XcxController extends Controller
 	
 	   $goods_ids = request()->post("goods_ids");
 
-	   dd($goods_ids);
+	   $user_id=$_SERVER['user_id'];
+
+	   $goods_ids = explode(",",$goods_ids);
+
+	   $delete = ShopCart::where("user_id",$user_id)->whereIn("goods_id",$goods_ids)->update(["is_del"=>0]);
+
+	   if($delete){
+	   
+	      $data = [
+			"error_no"=>0,
+			"error_msg"=>"删除成功"
+		  
+		  ];
+	   }else{
+	      $data = [
+			"error_no"=>111111,
+			"error_msg"=>"删除失败"
+		  
+		  ];
+	   }
+
+	    return $data;
 	
 	}
-
- 
 }
