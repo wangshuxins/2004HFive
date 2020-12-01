@@ -423,5 +423,14 @@ class XcxController extends Controller
 	   }
 	
 	}
+
+	public function delete(){
+	
+	   $goods_ids = request()->goods_ids;
+
+	   dd($goods_ids);
+	
+	}
+
  
 }
