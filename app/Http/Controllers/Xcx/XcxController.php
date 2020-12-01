@@ -425,7 +425,6 @@ class XcxController extends Controller
 	}
 
 	public function deletes(){
-		dd('123');
 	
 	   $goods_ids = request()->post("goods_ids");
 
