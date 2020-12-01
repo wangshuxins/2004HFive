@@ -45,6 +45,6 @@ Route::prefix('/xcx')->group(function(){
 	Route::get("/cartsum",'Xcx\XcxController@cartsum')->middleware("login");//商品数量
 	Route::get("/counts",'Xcx\XcxController@counts')->middleware("login");//商品个数
 	Route::get("/addlist",'Xcx\XcxController@addlist')->middleware("login");//商品添加
-	Route::post("/deletes","Xcx\XcxController@deletes")->middleware("login");//删除购物车列表
+	Route::post("/deletes","'Xcx\XcxController@deletes")->middleware("login");//删除购物车列表
 });
 
