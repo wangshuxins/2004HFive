@@ -47,5 +47,6 @@ Route::prefix('/xcx')->group(function(){
 	Route::get("/addlist",'Xcx\XcxController@addlist')->middleware("login");//商品添加
 	Route::any("/deletes",'Xcx\XcxController@deletes')->middleware("login");//删除购物车列表
 	Route::any("/input",'Xcx\XcxController@input')->middleware("login");//购物车input框
+	Route::any("/settleaccount",'Xcx\XcxController@settleaccount')->middleware("login");//确认结算
 });
 
