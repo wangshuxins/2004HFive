@@ -412,7 +412,7 @@ class XcxController extends Controller
 		  "goods_totall"=>$goods_price*$buy_number
 	   ];
 
-	   $shopcart = ShopCart::where("user_id",$user_id)->where("goods_id",$goods_id,)->where("is_del",1)->update($data);
+	   $shopcart = ShopCart::where("user_id",$user_id)->where("goods_id",$goods_id)->where("is_del",1)->update($data);
 
 	   if($shopcart){
 	   
@@ -426,7 +426,6 @@ class XcxController extends Controller
 	   }
 	
 	}
-
 	public function deletes(){
 	
 	   $goods_ids = request()->post("goods_ids");
@@ -454,5 +453,51 @@ class XcxController extends Controller
 
 	    return $data;
 	
+	}
+	public function input(){
+		$user_id=$_SERVER['user_id'];
+
+		$goods_id = request()->goods_id;
+
+		$buy_number = request()->buy_number;
+		$shop_cart = ShopCart::where("shop_goods.is_del", 1)
+				->select("goods_price","goods_store")
+				->leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")
+				->where("shop_cart.goods_id","=",$goods_id)
+				->first()
+				->toArray();
+		$goods_store = $shop_cart['goods_store'];
+		$goods_price = $shop_cart['goods_price'];
+		if($buy_number>$goods_store){
+			$data = [
+				    "error_no"=>10001,
+					"error_msg"=>"库存不足"
+			];
+			return $data;exit;
+		}
+		if($buy_number<=0){
+			$data = [
+					"error_no"=>10001,
+					"error_msg"=>"最少购买一件"
+			];
+			return $data;exit;
+		}
+		$data = [
+				"buy_number"=>$buy_number,
+				"goods_totall"=>$goods_price*$buy_number
+		];
+
+		$shopcart = ShopCart::where("user_id",$user_id)->where("goods_id",$goods_id)->where("is_del",1)->update($data);
+
+		if($shopcart){
+
+			$array = [
+					"error_no"=>0,
+					"error_msg"=>"商品添加成功!",
+			];
+
+			return $array;
+
+		}
 	}
 }

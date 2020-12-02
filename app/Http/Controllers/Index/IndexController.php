@@ -9,11 +9,95 @@ use App\Http\Controllers\Hfive\HfiveController;
 use GuzzleHttp\Client;
 use App\Model\PWxMedia;
 use App\Model\Goods;
+use App\Model\ShopCart;
 class IndexController extends HfiveController
 {
 
        
    public function index(){
+
+	   $goods_id = 1;
+    
+	$shop_cart = ShopCart::where("shop_goods.is_del", 1)
+				->select("goods_price","goods_store")
+				->leftjoin("shop_goods","shop_cart.goods_id","=","shop_goods.goods_id")
+				->where("shop_cart.goods_id","=",$goods_id)
+				->first()
+		        ->toArray();
+	dd($shop_cart['goods_price']);
+
+	     $menu =[
+     "button"=>[
+		[
+          "name"=>"每日一更",
+          "sub_button"=>[
+		 [   
+          "type"=>"click",
+          "name"=>"签到",
+          "key"=>"wx_521"
+         ],
+		 [	
+          "type"=>"click",
+          "name"=>"每日推荐",
+          "key"=>"wx_data"
+         ],
+         [	
+          "type"=>"click",
+          "name"=>"当地天气状况",
+          "key"=>"wx_520"
+         ],
+		 [	
+          "type"=>"view",
+          "name"=>"查询历史",
+           "url"=>"http://www.wangshuxin.top/wx/history"
+         ],
+		 
+      ]
+	],
+      [
+           "name"=>"菜单",
+           "sub_button"=>[
+
+           [	
+               "type"=>"view",
+               "name"=>"搜索",
+               "url"=>"http://www.baidu.com/"
+            ], 
+            [
+                 "type"=> "pic_sysphoto", 
+                 "name"=> "拍照", 
+                 "key"=> "rselfmenu_1_0", 
+                 "sub_button"=> [ ]
+             ],
+            
+            [
+             "type"=> "pic_weixin", 
+                    "name"=> "微信相册发图", 
+                    "key"=> "rselfmenu_1_2", 
+                    "sub_button"=> [ ]
+			],
+			[
+                  "type"=> "pic_photo_or_album", 
+                  "name"=> "拍照或者相册发图", 
+                  "key"=> "rselfmenu_1_1", 
+                  "sub_button"=> [ ]
+            ],
+       ],
+     ],
+	 [	
+               "type"=>"view",
+               "name"=>"微商城",
+               "url"=>"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3d6c4ee4ee8c6159&redirect_uri=http://www.wangshuxin.top/wx/code&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+     ], 
+   ],
+];
+
+	$access_token = $this->assecc_token();
+	
+    $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$access_token;
+	client_menu($url,$menu);
+    exit;
+
 
 	   $json = '{"code":200,"msg":"success","newslist":[{"pinyin":"_ni hao _","jianxie":"_nh_"}]}';
 

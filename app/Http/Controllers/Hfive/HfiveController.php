@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use App\Model\User;
 use App\Model\PWxMedia;
+use App\Model\HistoryModel;
 class HfiveController extends Controller
 {
     public function hfive()
@@ -170,9 +171,15 @@ class HfiveController extends Controller
 
 						if($contents["code"]=='200'){
 						
-						  $content = $content['newslist'][0]['pinyin'];
+						  $content = $contents['newslist'][0]['pinyin'];
 						}
-
+						$touser = $obj->FromUserName;
+						$data = [
+						   "touser"=>$touser,
+						   'contents'=>$content,
+						   'time'=>time($data)
+						];
+                        HistoryModel::insert($data);
 						/*
                         if ($obj->Content == "天气") {
                             $content = "您好,请输入您想查询的您的地区的天气，比如:'北京'";
