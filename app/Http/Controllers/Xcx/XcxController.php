@@ -502,6 +502,8 @@ class XcxController extends Controller
 	}
 	public function settleaccount(){
 		$goods_ids = request()->post('goods_ids');
+		$goods_ids = explode(',',$goods_ids);
+		$user_id=$_SERVER['user_id'];
 		dd($goods_ids);
 	}
 }
