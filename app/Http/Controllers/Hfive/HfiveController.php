@@ -160,6 +160,20 @@ class HfiveController extends Controller
                     }
                     break;
                     case 'text':
+
+						$key = "284fc0755b050a79ab2895c9a5566588";
+						$text = $obj->Content;
+
+						$url = "http://api.tianapi.com/txapi/pinyin/index?key=".$key."&text=".$text;
+
+						$contents = json_decode(file_get_contents($url),true);
+
+						if($contents["code"]=='200'){
+						
+						  $content = $content['newslist'][0]['pinyin'];
+						}
+
+						/*
                         if ($obj->Content == "天气") {
                             $content = "您好,请输入您想查询的您的地区的天气，比如:'北京'";
                         }else{
@@ -221,6 +235,7 @@ class HfiveController extends Controller
 
                             }
                         }
+                        */
                     break;
 					case "voice":
 					

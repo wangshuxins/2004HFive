@@ -14,6 +14,12 @@ class IndexController extends HfiveController
 
        
    public function index(){
+
+	   $json = '{"code":200,"msg":"success","newslist":[{"pinyin":"_ni hao _","jianxie":"_nh_"}]}';
+
+	   $shuzu = json_decode($json,true);
+
+	   dd($shuzu);
        $data = [
           '1234'=>213,
           '3254'=>123
