@@ -505,6 +505,6 @@ class XcxController extends Controller
 		$goods_ids = explode(',',$goods_ids);
 		$user_id=$_SERVER['user_id'];
 		$goods_totall = request()->post('goods_totall');
-		dd($goods_ids."\r\n".$goods_totall);
+		dd($goods_totall);
 	}
 }
